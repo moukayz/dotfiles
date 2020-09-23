@@ -1,0 +1,21 @@
+# custom alias
+alias vbash="vim ~/.bash.local"
+alias sbash="source ~/.bashrc"
+alias ua-config="sudo update-alternatives --config"
+alias ua-install="sudo update-alternatives --install"
+
+export EDITOR="vim"
+
+# set bash to use vi mode
+set -o vi
+
+# set proxy
+export http_proxy="http://127.0.0.1:33221"
+export https_proxy="http://127.0.0.1:33221"
+
+# add linuxbrew packages to PATH
+export PATH=$PATH:/home/linuxbrew/.linuxbrew/bin/
+
+# enable colorful manpage
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export MANROFFOPT="-c"
