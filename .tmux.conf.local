@@ -180,8 +180,7 @@ tmux_conf_theme_right_separator_sub='\uE0B3'
 #     - #{username}
 #     - #{username_ssh}
 tmux_conf_theme_status_left=' ❐ #S | ↑#{?uptime_y, #{uptime_y}y,}#{?uptime_d, #{uptime_d}d,}#{?uptime_h, #{uptime_h}h,}#{?uptime_m, #{uptime_m}m,} '
-tmux_conf_theme_status_right='#{prefix}#{pairing}#{synchronized} | #(curl wttr.in/hangzhou?format=2 2>/dev/null; sleep 600) | #(~/.tmux_scripts/show_cpu.sh) | %R , %d %b | #{username}#{root} | #{hostname} '
-#tmux_conf_theme_status_right='#{prefix}#{pairing}#{synchronized}, #(echo "CPU `LC_ALL=C top -bn1 | grep "Cpu(s)" | sed "s/.*, *\([0-9.]*\)%* id.*/\1/" | awk \'{print 100 - $1}\'`% RAM `free -m | awk \'/Mem:/ { printf("%3.1f%%", $3/$2*100) }\'` HDD `df -h / | awk \'/\// {print $(NF-1)}\'`") , #(curl wttr.in/hangzhou?format=3 2>/dev/null; sleep 600) , %R , %d %b | #{username}#{root} | #{hostname} '
+tmux_conf_theme_status_right='#{prefix}#{pairing}#{synchronized} | #(curl -m 1 wttr.in/hangzhou?format=3 2>/dev/null; sleep 5) | #(~/.tmux_scripts/show_cpu.sh) | %R , %d %b | #{username}#{root} | #{hostname} '
 
 # status left style
 tmux_conf_theme_status_left_fg='#000000,#e4e4e4,#e4e4e4'  # black, white , white
@@ -286,7 +285,7 @@ tmux_conf_copy_to_os_clipboard=false
 #set -g mode-keys vi
 
 # replace C-b by C-a instead of using both prefixes
-# set -gu prefix2
+set -gu prefix2
 unbind C-a
 unbind C-b
 set -g prefix C-u
@@ -302,3 +301,9 @@ unbind C-h
 unbind C-l
 bind -r < previous-window
 bind -r > next-window
+
+# rebind split tmux pane
+unbind -
+unbind _
+bind | split-window -h
+bind - split-window -v

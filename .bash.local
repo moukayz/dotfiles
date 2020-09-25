@@ -19,3 +19,8 @@ export PATH=$PATH:/home/linuxbrew/.linuxbrew/bin/
 # enable colorful manpage
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export MANROFFOPT="-c"
+
+# set terminal env for ncdu
+export TERM=xterm-256color
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
