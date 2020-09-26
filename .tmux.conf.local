@@ -296,14 +296,12 @@ bind C-u send-prefix
 # move status line to top
 #set -g status-position top
 
-# rebind <prefix> < > to switch between windows
-unbind C-h
-unbind C-l
-bind -r < previous-window
-bind -r > next-window
-
 # rebind split tmux pane
 unbind -
 unbind _
 bind | split-window -h
 bind - split-window -v
+
+set-option -sa terminal-overrides ',xterm-color256:RGB'
+
+
