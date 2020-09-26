@@ -3,6 +3,7 @@ alias vbash="vim ~/.bash.local"
 alias sbash="source ~/.bashrc"
 alias ua-config="sudo update-alternatives --config"
 alias ua-install="sudo update-alternatives --install"
+alias config-nvim="vim ~/.config/nvim/init.vim"
 
 export EDITOR="vim"
 
@@ -19,8 +20,5 @@ export PATH=$PATH:/home/linuxbrew/.linuxbrew/bin/
 # enable colorful manpage
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export MANROFFOPT="-c"
-
-# set terminal env for ncdu
-export TERM=xterm-256color
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
