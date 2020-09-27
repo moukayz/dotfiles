@@ -18,7 +18,7 @@ Plug 'joshdick/onedark.vim'
 Plug 'vim-airline/vim-airline-themes'
 
 " snippets
-Plug 'SirVer/ultisnips'
+" Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
 " tools
@@ -53,6 +53,9 @@ Plug 'tpope/vim-fugitive'
 Plug 'xavierd/clang_complete'
 Plug 'ncm2/ncm2'
 Plug 'roxma/nvim-yarp'
+
+" code completion
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
 """ basic config
@@ -61,24 +64,30 @@ set tabstop=4 softtabstop=4 shiftwidth=4 expandtab smarttab autoindent
 set incsearch ignorecase smartcase hlsearch
 set ruler laststatus=2 showcmd showmode
 "set fillchars+=vert:\
-set wrap breakindent
-set encoding=utf-8
-set title
-set number
+set wrap breakindent " wrapped line has the same indent level with previous line
+set encoding=utf-8   " use utf-8 encoding
+set title            " display window title
+set number           " enable line number
 
 
 """ keymap
 let mapleader="\\"
 " basic map
-nmap <leader>q :q!<CR>
-nmap <leader>w :wall<CR>
-nmap <leader>r :source ~/.config/nvim/init.vim<CR>
+nmap <leader>q  :q!<CR>
+nmap <leader>w  :wall<CR>
+nmap <leader>r  :source ~/.config/nvim/init.vim<CR>
+nmap <Esc><Esc> :nohl<CR>
+nmap <leader>pi :PlugInstall<CR>
+" resize window 
+nnoremap <silent> <leader>+ :exe "resize " . (winheight(0) * 4/3)<CR>
+nnoremap <silent> <leader>- :exe "resize " . (winheight(0) * 3/4)<CR>
+
 " Nerdtree 
 nmap <leader>e :NERDTreeToggle<CR>
 " Tagbar
 nmap <leader>ss :TagbarToggle<CR>
 
-""" Plugin config
+""""""""""""""""""""""""""""" Plugin config
 """ NERDTree
 let g:NERDTreeDirArrowExpandable = '+'
 let g:NERDTreeDirArrowCollapsible = '-'
@@ -109,11 +118,11 @@ call NERDTreeHighlightFile('cxx',    'Red',     'none', 'red',     '#151515')
 call NERDTreeHighlightFile('js',     'Red',     'none', '#ffa500', '#151515')
 call NERDTreeHighlightFile('php',    'Magenta', 'none', '#ff00ff', '#151515')
 
-" RainbowParentheses
+""" RainbowParentheses
 let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
 autocmd VimEnter * RainbowParentheses
 
-" CppEnhancedHighlight
+""" CppEnhancedHighlight
 let g:cpp_class_scope_hightlist           = 1
 let g:cpp_member_variable_highlight       = 1
 let g:cpp_class_decl_highlight            = 1
@@ -121,22 +130,22 @@ let g:cpp_posix_standard                  = 1
 let g:cpp_experimental_template_highlight = 1
 let g:cpp_concepts_highlight = 1
 
-" CppClangComplete
+""" CppClangComplete
 let g:clang_library_path = '/usr/lib/llvm-10/lib'
 
-" Lightline
+""" Lightline
 let g:lightlie = {
     \ 'colorscheme' : 'seoul256',
     \ }
 
-" vim-airline
+""" vim-airline
 let g:airline_theme='onedark'
 
-" vim-easy-align
+""" vim-easy-align
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
-" NerdCommenter
+""" NerdCommenter
 let g:NERDSpaceDelims            = 1
 let g:NERDCompactSexyComs        = 1
 let g:NERDDefaultAlign           = 'left'
@@ -144,7 +153,70 @@ let g:NERDCommentEmptyLines      = 1
 let g:NERDTrimTrailingWhitespace = 1
 let g:NERDToggleCheckAllLines    = 1
 
-""" colorful
+""" Coc
+set hidden
+set nobackup
+set nowritebackup
+set cmdheight=2
+set updatetime=300
+set shortmess+=c
+
+if has("patch-8.1.1564")
+    set signcolumn=number
+else
+    set signcolumn=yes
+endif
+" Use <c-space> to trigger completion.
+if has('nvim')
+  inoremap <silent><expr> <c-space> coc#refresh()
+else
+  inoremap <silent><expr> <c-@> coc#refresh()
+endif
+
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
+" position. Coc only does snippet and additional edit on confirm.
+" <cr> could be remapped by other vim plugin, try `:verbose imap <CR>`.
+if exists('*complete_info')
+  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+else
+  inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+endif
+
+" Use `[g` and `]g` to navigate diagnostics
+" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" GoTo code navigation
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocActionAsync('doHover')
+  endif
+endfunction
+
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Symbol renaming
+nmap <leader>rn <Plug>(coc-rename)
+
+set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+
+" Formatting selected code.
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+
+""""""""""""""""""""""""" colorful
 syntax on
 set noshowmode
 color onedark
