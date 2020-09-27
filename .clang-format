@@ -1,1 +1,49 @@
-/home/legend/OpenSource/AlgorithmTraining/.clang-format
+BasedOnStyle: Google 
+IndentWidth: 4
+NamespaceIndentation: None
+
+Language: Cpp
+PointerAlignment: Left
+
+ColumnLimit: 110
+
+AlignConsecutiveAssignments: false
+AlignConsecutiveDeclarations: false 
+AlignConsecutiveMacros: true
+
+AlignEscapedNewlines: Left
+AlignOperands: true
+AlignTrailingComments: true
+AlignAfterOpenBracket: AlwaysBreak 
+
+BreakBeforeBraces: Stroustrup
+BreakConstructorInitializers: BeforeColon
+
+UseTab: Never
+AccessModifierOffset: -4
+AllowShortBlocksOnASingleLine: Empty
+AllowShortFunctionsOnASingleLine: Empty
+AllowShortIfStatementsOnASingleLine: Never
+AllowShortIfStatementsOnASingleLine: false
+AllowShortLoopsOnASingleLine: false 
+AllowShortLambdasOnASingleLine: Inline
+
+AllowAllArgumentsOnNextLine: true
+AllowAllParametersOfDeclarationOnNextLine: true
+AllowAllConstructorInitializersOnNextLine: true
+
+MaxEmptyLinesToKeep: 1
+
+SpacesInParentheses: false
+
+BinPackArguments: false
+BinPackParameters: true
+
+IncludeBlocks: Regroup
+
+IncludeCategories:
+    - Regex:    '<.*>'
+      Priority: 2
+    - Regex:    '^".*"'
+      Priority: 1
+
