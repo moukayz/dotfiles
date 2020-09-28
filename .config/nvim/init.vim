@@ -104,7 +104,7 @@ function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
    exec 'autocmd filetype nerdtree syn match ' . a:extension .' #^\s\+.*'.  a:extension .'$#'
 endfunction
 
-call NERDTreeHighlightFile('cpp',    'green',   'none', 'green',   '#151515')
+call NERDTreeHighlightFile('cpp',    'cyan',   'none', 'green',   '#151515')
 call NERDTreeHighlightFile('ini',    'yellow',  'none', 'yellow',  '#151515')
 call NERDTreeHighlightFile('md',     'blue',    'none', '#3366FF', '#151515')
 call NERDTreeHighlightFile('c',      'yellow',  'none', 'yellow',  '#151515')
@@ -140,6 +140,7 @@ let g:lightlie = {
 
 """ vim-airline
 let g:airline_theme='onedark'
+let g:airline_powerline_fonts = 1
 
 """ vim-easy-align
 xmap ga <Plug>(EasyAlign)
@@ -152,6 +153,12 @@ let g:NERDDefaultAlign           = 'left'
 let g:NERDCommentEmptyLines      = 1
 let g:NERDTrimTrailingWhitespace = 1
 let g:NERDToggleCheckAllLines    = 1
+
+"""ultisnips
+let g:UltiSnipsExpandTrigger=""
+
+""" devicons
+let g:webdevicons_conceal_nerdtree_brackets = 0
 
 """ Coc
 set hidden
@@ -166,6 +173,22 @@ if has("patch-8.1.1564")
 else
     set signcolumn=yes
 endif
+
+" Make <tab> used for trigger completion, completion confirm, snippet expand and jump like VSCode.
+inoremap <silent><expr> <TAB>
+         \ pumvisible() ? coc#_select_confirm() :
+         \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+         \ <SID>check_back_space() ? "\<TAB>" :
+         \ coc#refresh()
+
+function! s:check_back_space() abort
+   let col = col('.') - 1
+   return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+let g:coc_snippet_next = '<tab>'
+let g:coc_snippet_prev = '<S-tab>'
+
 " Use <c-space> to trigger completion.
 if has('nvim')
   inoremap <silent><expr> <c-space> coc#refresh()
