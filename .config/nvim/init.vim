@@ -42,6 +42,7 @@ Plug 'preservim/tagbar'        " show code structure by using ctags
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'sheerun/vim-polyglot'
+Plug 'vim-syntastic/syntastic'
 
 Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -88,6 +89,19 @@ nmap <leader>e :NERDTreeToggle<CR>
 nmap <leader>ss :TagbarToggle<CR>
 
 """"""""""""""""""""""""""""" Plugin config
+""" syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g_syntastic_auto_loc_list            = 1
+let g_syntastic_check_on_open            = 1
+let g_syntastic_check_on_wq              = 0
+
+""" airline
+let g:airline#extensions#tabline#enabled = 1
+
 """ NERDTree
 let g:NERDTreeDirArrowExpandable = '+'
 let g:NERDTreeDirArrowCollapsible = '-'
