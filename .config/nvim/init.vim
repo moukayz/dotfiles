@@ -9,6 +9,19 @@ let g:loaded_python_provider = 0
 set termguicolors
 set background=dark
 
+""" Automatically install vim-plug according to the editor used
+if has('nvim')
+    if empty(glob('"${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim'))
+        silent !curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs 
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    endif
+else
+    if empty(glob('~/.vim/autoload/plug.vim'))
+        silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    endif
+endif
+
 """ Plugins
 call plug#begin()
 " colorschemes
@@ -27,6 +40,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-easy-align' " alianment operations
 Plug 'tpope/vim-surround'      " surrounding operations
 Plug 'preservim/nerdcommenter' " auto comment with shortcut
+Plug 'justinmk/vim-sneak' " quick search based on first two chars 
 
 " display
 Plug 'junegunn/goyo.vim'       " concentrate only on text!
@@ -58,6 +72,11 @@ Plug 'roxma/nvim-yarp'
 " code completion
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
+
+""" Automatically install missing plugins on startup
+if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 
 """ basic config
 filetype plugin indent on
