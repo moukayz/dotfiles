@@ -304,4 +304,6 @@ bind - split-window -v
 
 set-option -sa terminal-overrides ',xterm*:Tc'
 
-
+# force vi mode
+set -g status-keys vi
+set -g mode-keys vi
