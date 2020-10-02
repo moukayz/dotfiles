@@ -4,6 +4,7 @@ alias sbash="source ~/.bashrc"
 alias ua-config="sudo update-alternatives --config"
 alias ua-install="sudo update-alternatives --install"
 alias config-nvim="vim ~/.config/nvim/init.vim"
+alias vim="nvim"
 
 export EDITOR="vim"
 
