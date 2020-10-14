@@ -81,6 +81,7 @@ set wrap breakindent " wrapped line has the same indent level with previous line
 set encoding=utf-8   " use utf-8 encoding
 set title            " display window title
 set number           " enable line number
+set relativenumber
 
 
 """ keymap
