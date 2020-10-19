@@ -66,10 +66,13 @@ Plug 'roxma/nvim-yarp'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
-""" Automatically install missing plugins on startup
-if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
- autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
+" """ Automatically install missing plugins on startup
+" if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+"  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+" endif
+
+""" enable syntax for local bash config file
+autocmd BufRead,BufNewFile .bash.local .bash.work set filetype=bash
 
 """ basic config
 filetype plugin indent on
@@ -269,4 +272,5 @@ nmap <leader>f  <Plug>(coc-format-selected)
 """"""""""""""""""""""""" colorful
 syntax on
 set noshowmode
-color onedark
+" color onedark
+color dracula
