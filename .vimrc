@@ -10,6 +10,13 @@ try
 catch
 endtry
 
+call plug#begin('~/.vim/plugged')
+
+Plug 'plasticboy/vim-markdown'
+Plug 'vimwiki/vimwiki'
+
+call plug#end()
+
 filetype plugin on 
 set path+=**
 set showcmd
@@ -20,5 +27,3 @@ set autoindent
 set cursorline
 syntax on
 set syntax+=whitespace
-set conceallevel=2
-set concealcursor

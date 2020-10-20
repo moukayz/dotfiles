@@ -48,6 +48,7 @@ Plug 'preservim/tagbar'        " show code structure by using ctags
 " syntax highlighting
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'junegunn/rainbow_parentheses.vim'
+
 Plug 'sheerun/vim-polyglot'
 Plug 'vim-syntastic/syntastic'
 Plug 'plasticboy/vim-markdown'
@@ -75,20 +76,6 @@ call plug#end()
 "  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 " endif
 
-""" enable syntax for local bash config file
-autocmd BufRead,BufNewFile .bash.local .bash.work set filetype=bash
-
-""" basic config
-filetype plugin indent on
-set tabstop=4 softtabstop=4 shiftwidth=4 expandtab smarttab autoindent
-set incsearch ignorecase smartcase hlsearch
-set ruler laststatus=2 showcmd showmode
-"set fillchars+=vert:\
-set wrap breakindent " wrapped line has the same indent level with previous line
-set encoding=utf-8   " use utf-8 encoding
-set title            " display window title
-set number           " enable line number
-set relativenumber
 
 
 """ keymap
@@ -179,7 +166,11 @@ call NERDTreeHighlightFile('php',    'Magenta', 'none', '#ff00ff', '#151515')
 
 """ RainbowParentheses
 let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
-autocmd VimEnter * RainbowParentheses
+let rainbow_blacklist = ['vimwiki', 'md']
+augroup RainbowPrarent
+    autocmd!
+    autocmd BufEnter,WinEnter * if index(rainbow_blacklist, &ft) < 0 | RainbowParentheses
+augroup end
 
 """ CppEnhancedHighlight
 let g:cpp_class_scope_hightlist           = 1
@@ -298,11 +289,25 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 xmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
 
+""" enable syntax for local bash config file
+autocmd BufRead,BufNewFile .bash.local .bash.work set filetype=bash
+
+""" basic config
+filetype plugin indent on
+set tabstop=4 softtabstop=4 shiftwidth=4 expandtab smarttab autoindent
+set incsearch ignorecase smartcase hlsearch
+set ruler laststatus=2 showcmd
+"set fillchars+=vert:\
+set wrap breakindent " wrapped line has the same indent level with previous line
+set encoding=utf-8   " use utf-8 encoding
+set title            " display window title
+set number           " enable line number
+set relativenumber
+set cursorline
+set autoread
 
 """"""""""""""""""""""""" colorful
 syntax on
-set conceallevel=2
-set concealcursor="n"
 set noshowmode
 color onedark
 " color dracula
