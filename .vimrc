@@ -20,4 +20,5 @@ set autoindent
 set cursorline
 syntax on
 set syntax+=whitespace
-
+set conceallevel=2
+set concealcursor

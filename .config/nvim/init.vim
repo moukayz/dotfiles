@@ -50,6 +50,7 @@ Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'vim-syntastic/syntastic'
+Plug 'plasticboy/vim-markdown'
 
 Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -300,6 +301,8 @@ nmap <leader>f  <Plug>(coc-format-selected)
 
 """"""""""""""""""""""""" colorful
 syntax on
+set conceallevel=2
+set concealcursor="n"
 set noshowmode
-" color onedark
-color dracula
+color onedark
+" color dracula
