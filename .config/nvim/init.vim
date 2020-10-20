@@ -62,11 +62,14 @@ Plug 'xavierd/clang_complete'
 Plug 'ncm2/ncm2'
 Plug 'roxma/nvim-yarp'
 
+" misc
+Plug 'vimwiki/vimwiki'
+
 " code completion
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
-" """ Automatically install missing plugins on startup
+""" Automatically install missing plugins on startup
 " if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
 "  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 " endif
@@ -92,9 +95,25 @@ let mapleader="\\"
 " basic map
 nmap <leader>q  :q!<CR>
 nmap <leader>w  :wall<CR>
-nmap <leader>r  :source ~/.config/nvim/init.vim<CR>
-nmap <Esc><Esc> :nohl<CR>
+nmap <Esc><Esc> :set hls!<CR>
 nmap <leader>pi :PlugInstall<CR>
+
+" use Y to duplicate line or selection
+nmap Y yyp
+vmap Y y`>pgv
+
+" map modification for init.vim
+nnoremap <leader>. <Esc>:tabe   $MYVIMRC<CR>
+nnoremap <leader>r <Esc>:source $MYVIMRC<CR>
+augroup ReloadVim
+    autocmd!
+    autocmd! BufWritePost $MYVIMRC source % | echom "Reloaded " . $MYVIMRC | redraw
+augroup END
+
+" keep search matches in the middle of the screen
+nnoremap n nzz
+nnoremap N Nzz
+
 " resize window 
 nnoremap <silent> <leader>+ :exe "resize " . (winheight(0) * 4/3)<CR>
 nnoremap <silent> <leader>- :exe "resize " . (winheight(0) * 3/4)<CR>
@@ -117,6 +136,15 @@ let g_syntastic_check_on_wq              = 0
 
 """ airline
 let g:airline#extensions#tabline#enabled = 1
+
+""" vimwiki
+hi VimwikiHeader1 guifg=cyan
+hi VimwikiHeader2 guifg=green
+hi VimwikiHeader3 guifg=yellow
+hi VimwikiHeader4 guifg=blue
+hi VimwikiHeader5 guifg=blue
+hi VimwikiHeader6 guifg=blue
+hi VimwikiLink term=underline ctermfg=cyan guifg=cyan gui=underline
 
 """ NERDTree
 let g:NERDTreeDirArrowExpandable = '+'
@@ -268,6 +296,7 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 " Formatting selected code.
 xmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
+
 
 """"""""""""""""""""""""" colorful
 syntax on
