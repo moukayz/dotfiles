@@ -23,3 +23,12 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export MANROFFOPT="-c"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+function tianqi() {
+    if [[ ! -z $1 ]]
+    then
+        curl wttr.in/$1
+    else
+        curl wttr.in
+    fi
+}

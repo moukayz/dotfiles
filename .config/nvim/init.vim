@@ -65,10 +65,15 @@ Plug 'ncm2/ncm2'
 Plug 'roxma/nvim-yarp'
 
 " misc
+Plug 'easymotion/vim-easymotion'
 Plug 'vimwiki/vimwiki'
 
 " code completion
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+" vim ninjia !!!!
+Plug 'wikitopian/hardmode'
+
 call plug#end()
 
 """ Automatically install missing plugins on startup
@@ -95,7 +100,7 @@ nnoremap <leader>. <Esc>:tabe   $MYVIMRC<CR>
 nnoremap <leader>r <Esc>:source $MYVIMRC<CR>
 augroup ReloadVim
     autocmd!
-    autocmd! BufWritePost $MYVIMRC source % | echom "Reloaded " . $MYVIMRC | redraw
+    autocmd! BufWritePost $MYVIMRC source % | echom "Reloaded " . $MYVIMRC | redraw | e
 augroup END
 
 " keep search matches in the middle of the screen
@@ -133,6 +138,7 @@ hi VimwikiHeader4 guifg=blue
 hi VimwikiHeader5 guifg=blue
 hi VimwikiHeader6 guifg=blue
 hi VimwikiLink term=underline ctermfg=cyan guifg=cyan gui=underline
+let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
 
 """ NERDTree
 let g:NERDTreeDirArrowExpandable = '+'
@@ -169,6 +175,7 @@ let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
 let rainbow_blacklist = ['vimwiki', 'md']
 augroup RainbowPrarent
     autocmd!
+    autocmd BufEnter,WinEnter * RainbowParentheses!
     autocmd BufEnter,WinEnter * if index(rainbow_blacklist, &ft) < 0 | RainbowParentheses
 augroup end
 
@@ -289,8 +296,12 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 xmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
 
+""" vim-hardmode
+let g:HardMode_level='wannabe'
+autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
+
 """ enable syntax for local bash config file
-autocmd BufRead,BufNewFile .bash.local .bash.work set filetype=bash
+autocmd BufRead,BufNewFile,BufEnter .bash.* set filetype=sh
 
 """ basic config
 filetype plugin indent on
