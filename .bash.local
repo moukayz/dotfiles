@@ -4,7 +4,13 @@ alias sbash="source ~/.bashrc"
 alias ua-config="sudo update-alternatives --config"
 alias ua-install="sudo update-alternatives --install"
 alias config-nvim="vim ~/.config/nvim/init.vim"
-alias vim="nvim"
+
+# git alias
+alias gs="git status"
+alias gss="git status -s"
+alias gcm="git commit -m"
+alias gca="git commit -am"
+alias glo="git log --oneline"
 
 export EDITOR="vim"
 
@@ -16,7 +22,7 @@ export http_proxy="http://127.0.0.1:33221"
 export https_proxy="http://127.0.0.1:33221"
 
 # add linuxbrew packages to PATH
-export PATH=$PATH:/home/linuxbrew/.linuxbrew/bin/
+export PATH=$PATH:/home/linuxbrew/.linuxbrew/bin/:/home/linuxbrew/.linuxbrew/lib/ruby/gems/2.7.0/bin
 
 # enable colorful manpage
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"

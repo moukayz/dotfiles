@@ -30,10 +30,11 @@ Plug 'honza/vim-snippets'
 " tools
 Plug 'junegunn/fzf', { 'do' : { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'airblade/vim-rooter'
 Plug 'junegunn/vim-easy-align' " alianment operations
 Plug 'tpope/vim-surround'      " surrounding operations
 Plug 'preservim/nerdcommenter' " auto comment with shortcut
-Plug 'justinmk/vim-sneak' " quick search based on first two chars 
+Plug 'justinmk/vim-sneak'      " quick search based on first two chars
 
 " display
 Plug 'junegunn/goyo.vim'       " concentrate only on text!

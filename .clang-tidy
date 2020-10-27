@@ -1,0 +1,5 @@
+---
+Checks:              'cert*, clang-analyzer*, cppcoreguidelines*, google*, modernize*, performance*, readability*, -modernize-use-trailing-return-type, -cppcoreguidelines-pro-type-member-init'
+WarningsAsErrors:    ''
+HeaderFilterRegex:   '.*'
+
