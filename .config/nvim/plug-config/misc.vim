@@ -53,3 +53,6 @@ let g:webdevicons_conceal_nerdtree_brackets = 0
 let g:HardMode_level='wannabe'
 autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
 
+""" vim-highlightedyank
+let g:highlightedyank_highlight_duration = 500
+let b:highlightedyank_highlight_duration = 500

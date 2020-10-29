@@ -33,13 +33,14 @@ Plug 'preservim/nerdcommenter' " auto comment with shortcut
 Plug 'justinmk/vim-sneak'      " quick search based on first two chars
 
 " display
-Plug 'junegunn/goyo.vim'       " concentrate only on text!
-Plug 'junegunn/limelight.vim'  " highlight current paragraph
-Plug 'junegunn/vim-emoji'      " get emoji from name
-Plug 'ryanoasis/vim-devicons'  " awesome file icons
-Plug 'vim-airline/vim-airline' " just status line
-Plug 'mhinz/vim-startify'      " vim startup page
-Plug 'preservim/tagbar'        " show code structure by using ctags
+Plug 'machakann/vim-highlightedyank' " highlight yanked text
+Plug 'junegunn/goyo.vim'             " concentrate only on text!
+Plug 'junegunn/limelight.vim'        " highlight current paragraph
+Plug 'junegunn/vim-emoji'            " get emoji from name
+Plug 'ryanoasis/vim-devicons'        " awesome file icons
+Plug 'vim-airline/vim-airline'       " just status line
+Plug 'mhinz/vim-startify'            " vim startup page
+Plug 'preservim/tagbar'              " show code structure by using ctags
 
 " syntax highlighting
 Plug 'octol/vim-cpp-enhanced-highlight'
