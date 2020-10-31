@@ -23,7 +23,7 @@ nnoremap <silent> <leader>- :exe "resize " . (winheight(0) * 3/4)<CR>
 " auto close parenthiese
 inoremap " ""<left>
 inoremap ' ''<left>
-inoremap ( ()<left>
+" inoremap ( ()<left>
 inoremap [ []<left>
 inoremap { {}<left>
 inoremap {<CR> {<CR>}<ESC>O

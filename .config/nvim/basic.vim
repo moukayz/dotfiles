@@ -79,6 +79,12 @@ augroup ReloadVim
     autocmd! BufWritePost ~/.config/nvim/**.vim source % | echom "Reloaded " . $MYVIMRC | redraw | e
 augroup END
 
+""" Enable syntax for CMakeLists.txt file
+augroup CMakeSyntax
+    autocmd!
+    autocmd BufNewFile,BufRead CMakeLists.txt set filetype=cmake
+augroup END
+
 """ enable syntax for local bash config file
 autocmd BufRead,BufNewFile,BufEnter .bash.* set filetype=sh
 
