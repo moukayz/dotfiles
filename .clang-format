@@ -1,6 +1,6 @@
 Language: Cpp
 
-BasedOnStyle: Google 
+BasedOnStyle: Google
 
 ColumnLimit: 120
 
@@ -9,14 +9,23 @@ IndentWidth: 4
 
 BreakBeforeBraces: WebKit
 
-AllowAllArgumentsOnNextLine: true
-AllowAllParametersOfDeclarationOnNextLine: true
-AlignAfterOpenBracket: AlwaysBreak 
+AllowAllArgumentsOnNextLine: false
+AllowAllParametersOfDeclarationOnNextLine: false
+
+AlignAfterOpenBracket: DontAlign
+# Align: foo(arg1,
+#            arg2);
+#
+# DontAlign: foo(arg1,
+#            arg2);
+#
+# AlwaysBreak: foo(
+#            arg1, arg2);
 
 AllowShortBlocksOnASingleLine: Empty
 AllowShortFunctionsOnASingleLine: Empty
 AllowShortIfStatementsOnASingleLine: Never
-AllowShortLoopsOnASingleLine: false 
+AllowShortLoopsOnASingleLine: false
 AllowShortLambdasOnASingleLine: Inline
 
 AlignOperands: true
@@ -25,7 +34,7 @@ IndentCaseLabels: true
 
 NamespaceIndentation: None
 
-PointerAlignment: Left
+PointerAlignment: Right
 
 MaxEmptyLinesToKeep: 1
 
@@ -36,17 +45,21 @@ BreakConstructorInitializers: BeforeColon
 IncludeBlocks: Regroup
 
 IncludeCategories:
-    - Regex:    '<.*[^\.][^h]>'
-      Priority: 1
-    - Regex:    '<.*\.h>'
-      Priority: 2
-    - Regex:    '^"[^f][^i][^t][^\_].*"'
-      Priority: 3
-    - Regex:    '^"fit\_.*"'
-      Priority: 4
+    # - Regex:    '<.*[^\.][^h]>'
+    #   Priority: 1
+    # - Regex:    '<.*\.h>'
+    #   Priority: 2
+    # - Regex:    '^"[^f][^i][^t][^\_].*"'
+    #   Priority: 3
+    # - Regex:    '^"fit\_.*"'
+    #   Priority: 4
+  - Regex: '^".*'
+    Priority: 1
+  - Regex: '^<.*'
+    Priority: 2
 
 AlignConsecutiveAssignments: false
-AlignConsecutiveDeclarations: false 
+AlignConsecutiveDeclarations: false
 AlignConsecutiveMacros: true
 
 AlignEscapedNewlines: Left
@@ -57,4 +70,4 @@ AllowAllConstructorInitializersOnNextLine: true
 SpacesInParentheses: false
 
 BinPackArguments: false
-BinPackParameters: true
+BinPackParameters: false
