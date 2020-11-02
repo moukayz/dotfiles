@@ -57,7 +57,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tpope/vim-fugitive'
 
 " cpp
-Plug 'xavierd/clang_complete'
+" Plug 'xavierd/clang_complete'
 Plug 'ncm2/ncm2'
 Plug 'roxma/nvim-yarp'
 
