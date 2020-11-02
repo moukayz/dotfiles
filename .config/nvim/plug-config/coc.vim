@@ -77,3 +77,5 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 xmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
 
+" Format code buffer on save
+autocmd BufWritePost * silent call CocAction('format')
