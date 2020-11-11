@@ -11,6 +11,7 @@ let g_syntastic_check_on_wq              = 0
 
 """ RainbowParentheses
 let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
+let g:rainbow#blacklist = [233,234,235]
 " this plugin will conflict with some filetypes, so disable it for those types
 let rainbow_blacklist = ['vimwiki', 'md', 'cmake']
 augroup RainbowPrarent

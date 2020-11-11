@@ -64,6 +64,7 @@ Plug 'roxma/nvim-yarp'
 " misc
 Plug 'easymotion/vim-easymotion'
 Plug 'vimwiki/vimwiki'
+Plug 'jiangmiao/auto-pairs'
 
 " code completion
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -104,5 +105,5 @@ set autoread
 """"""""""""""""""""""""" colorful
 syntax on
 set noshowmode
-color onedark
-" color dracula
+" color onedark
+color dracula

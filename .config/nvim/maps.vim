@@ -20,15 +20,6 @@ nnoremap N Nzz
 nnoremap <silent> <leader>+ :exe "resize " . (winheight(0) * 4/3)<CR>
 nnoremap <silent> <leader>- :exe "resize " . (winheight(0) * 3/4)<CR>
 
-" auto close parenthiese
-inoremap " ""<left>
-inoremap ' ''<left>
-" inoremap ( ()<left>
-inoremap [ []<left>
-inoremap { {}<left>
-inoremap {<CR> {<CR>}<ESC>O
-inoremap {;<CR> {<CR>};<ESC>O
-
 " set paste mode to copy text from other applications
 nnoremap <F2> :set invpaste paste?<CR>
 set pastetoggle=<F2>

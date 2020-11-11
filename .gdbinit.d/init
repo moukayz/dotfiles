@@ -5,6 +5,7 @@ define source-profile
     dashboard source -style height 15
     dashboard variables -style align False
     dashboard variables -style compact False
+    dashboard stack -style limit 5
 end
 
 define assembly-profile
