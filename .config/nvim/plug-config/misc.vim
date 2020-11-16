@@ -14,7 +14,7 @@ let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
 let g:rainbow#blacklist = [233,234,235]
 " this plugin will conflict with some filetypes, so disable it for those types
 let rainbow_blacklist = ['vimwiki', 'md', 'cmake']
-augroup RainbowPrarent
+augroup SetRainbowParentheses
     autocmd!
     autocmd BufEnter,WinEnter * RainbowParentheses!
     autocmd BufEnter,WinEnter * if index(rainbow_blacklist, &ft) < 0 | RainbowParentheses
@@ -53,7 +53,10 @@ let g:webdevicons_conceal_nerdtree_brackets = 0
 
 """ vim-hardmode
 let g:HardMode_level='wannabe'
-autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
+augroup VimHardMode
+    autocmd!
+    autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
+augroup END
 
 """ vim-highlightedyank
 let g:highlightedyank_highlight_duration = 500

@@ -8,6 +8,8 @@ let mapleader="\\"
 let g:python3_host_prog = '/usr/bin/python3'
 let g:loaded_python_provider = 0
 
+set clipboard+=unnamedplus
+
 """ set true color
 set termguicolors
 set background=dark
@@ -70,7 +72,7 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " vim ninjia !!!!
-Plug 'wikitopian/hardmode'
+" Plug 'wikitopian/hardmode'
 
 call plug#end()
 
@@ -87,7 +89,10 @@ augroup CMakeSyntax
 augroup END
 
 """ enable syntax for local bash config file
-autocmd BufRead,BufNewFile,BufEnter .bash.* set filetype=sh
+augroup SetBashFileType
+    autocmd!
+    autocmd BufRead,BufNewFile,BufEnter .bash.* set filetype=sh
+augroup END
 
 """ basic config
 filetype plugin indent on
@@ -100,10 +105,15 @@ set title            " display window title
 set number           " enable line number
 set relativenumber
 set cursorline
+set showmatch
 set autoread
+
 
 """"""""""""""""""""""""" colorful
 syntax on
 set noshowmode
 " color onedark
 color dracula
+
+" underline current line
+hi CursorLine cterm=underline gui=underline

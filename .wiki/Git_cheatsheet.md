@@ -209,6 +209,43 @@
   git checkout another_branch
   ```
 
+- 在commit历史中搜索某文件
+  ```bash
+  git log --all --full-history -- <path-to-file> # 精确的文件路径
+  git log --all --full-history -- "**/my-folder/*" # 搜索my-folder文件夹下的所有文件
+  ```
+
+- 显示某一commit中某文件的内容
+  ```bash
+  git show <commit-SHA> -- <path-to-file>
+  ```
+
+- 将某文件恢复到某一commit时的状态
+  ```bash
+  git checkout <commit-SHA>^ -- <path-to-file>
+  ```
+
+## git log
+
+- 根据文件变化类型进行过滤
+  ```bash
+  git log --diff-filter=filter
+  # filter:
+  # A: Added
+  # C: Copied
+  # D: Deleted
+  # M: Modified
+  # R: Renamed
+  # ...
+  git log --diff-filter=D # show commits that deleted files
+
+  # lowercase filter represents to exclude this type
+  git log --diff-filter=d # show commits that didn't deleted files
+
+- 仅显示改动的文件名和改动类型
+  ```bash
+  git log --name-only   # only file name
+  git log --name-status # only file name and status of change
 ## git config
 
 - 暂时启用git密码缓存

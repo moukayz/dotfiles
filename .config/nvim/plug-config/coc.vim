@@ -66,7 +66,10 @@ function! s:show_documentation()
 endfunction
 
 " Highlight the symbol and its references when holding the cursor.
-autocmd CursorHold * silent call CocActionAsync('highlight')
+augroup HoldHighlight
+    autocmd!
+    autocmd CursorHold * silent call CocActionAsync('highlight')
+augroup END
 
 " Symbol renaming
 nmap <leader>rn <Plug>(coc-rename)
@@ -78,4 +81,7 @@ xmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
 
 " Format code buffer on save
-autocmd BufWritePost * silent! call CocAction('format')
+augroup FormatSave
+    autocmd!
+    autocmd BufWritePost * silent! call CocAction('format')
+augroup END
