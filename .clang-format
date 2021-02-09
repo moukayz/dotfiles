@@ -7,7 +7,8 @@ ColumnLimit: 120
 UseTab: Never
 IndentWidth: 4
 
-BreakBeforeBraces: WebKit
+# BreakBeforeBraces: WebKit
+BreakBeforeBraces: Stroustrup
 
 AllowAllArgumentsOnNextLine: false
 AllowAllParametersOfDeclarationOnNextLine: false
@@ -41,6 +42,8 @@ MaxEmptyLinesToKeep: 1
 AccessModifierOffset: -4
 
 BreakConstructorInitializers: BeforeColon
+
+BreakBeforeBinaryOperators: None
 
 IncludeBlocks: Regroup
 
