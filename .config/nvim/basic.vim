@@ -116,4 +116,4 @@ set noshowmode
 color dracula
 
 " underline current line
-hi CursorLine cterm=underline gui=underline
+" hi CursorLine cterm=underline gui=underline
