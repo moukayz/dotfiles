@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 export http_proxy="http://localhost:33221"
-export https_proxy="http://localhost:33221"
+export https_proxy="http://localhost:33221" 

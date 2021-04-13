@@ -1,0 +1,8 @@
+package colored-man-pages
+package git-flow
+theme default
+theme lambda
+theme mars
+theme ocean
+theme sushi
+theme wolf-theme
