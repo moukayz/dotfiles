@@ -1,4 +1,5 @@
 package colored-man-pages
+package foreign-env
 package git-flow
 theme default
 theme lambda

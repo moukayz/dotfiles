@@ -28,4 +28,4 @@ fi
 
 # Created by `userpath` on 2020-07-30 13:04:13
 export PATH="$PATH:/home/legend/.local/bin"
-eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
