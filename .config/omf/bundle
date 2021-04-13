@@ -3,6 +3,9 @@ package git-flow
 theme default
 theme lambda
 theme mars
+theme nai
 theme ocean
+theme pure
+theme rider
 theme sushi
 theme wolf-theme
