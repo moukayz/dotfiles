@@ -29,3 +29,8 @@ fi
 # Created by `userpath` on 2020-07-30 13:04:13
 export PATH="$PATH:/home/legend/.local/bin"
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+# config nvm path
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
