@@ -1,4 +1,8 @@
 tap "homebrew/bundle"
 tap "homebrew/core"
 brew "bat"
+brew "fd"
 brew "fish"
+brew "fzf"
+brew "neofetch"
+brew "ripgrep"
