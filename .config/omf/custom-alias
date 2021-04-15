@@ -1,0 +1,14 @@
+# git
+alias gss="git status --short"
+alias glo="git log --oneline"
+
+# for yadm
+alias yss="yadm status"
+alias yp="yadm push"
+alias ya="yadm add"
+alias yca="yadm commit -a"
+
+alias ua-config="sudo update-alternatives --config"
+alias ua-install="sudo update-alternatives --install"
+
+alias config-nvim="vim ~/.config/nvim/init.vim"
