@@ -40,3 +40,14 @@ export NVM_DIR="$HOME/.nvm"
 # config fzf
 export FZF_DEFAULT_COMMAND="fd --type f --hidden --follow --exclude .git"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin
+
+# set git alias
+alias gs="git status"
+alias gss="git status -s"
+alias gcm="git commit -m"
+alias gca="git commit -am"
+alias glo="git log --oneline"
+alias gln="git log --name-only"
+alias gaa="git add ."
+alias gprb="git pull --rebase"
