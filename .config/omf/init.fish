@@ -5,6 +5,12 @@ alias unset "set -e"
 
 set OMF_CONFIG_INIT "$OMF_CONFIG/init.fish"
 
+# set system proxy
+source ~/enable_proxy
+
+# start local proxy server(default is worker)
+proxy-worker
+
 # download missing plugins or themes
 omf install
 
