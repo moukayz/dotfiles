@@ -71,6 +71,9 @@ Plug 'jiangmiao/auto-pairs'
 " code completion
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
+" cheat.sh support for vim
+Plug 'dbeniamine/cheat.sh-vim'
+
 " vim ninjia !!!!
 " Plug 'wikitopian/hardmode'
 
