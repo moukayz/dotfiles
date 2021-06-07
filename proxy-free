@@ -1,4 +1,4 @@
 #!/bin/sh
 
 sudo service cntlm stop
-sudo service tinyproxy start
+sudo service tinyproxy restart

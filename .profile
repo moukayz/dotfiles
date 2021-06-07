@@ -27,8 +27,10 @@ if [ -d "$HOME/.local/bin" ] ; then
 fi
 
 # Created by `userpath` on 2020-07-30 13:04:13
-export PATH="$PATH:/home/legend/.local/bin"
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+if [[ -d $HOME/.local/bin ]]; then
+    export PATH="$PATH:/home/legend/.local/bin:/usr/local/go/bin"
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+fi
 
 # config nvm path
 export NVM_DIR="$HOME/.nvm"
