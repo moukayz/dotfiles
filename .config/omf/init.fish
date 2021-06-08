@@ -10,7 +10,10 @@ if not set -q OMF_PLUGIN_UPDATED
     # download missing plugins or themes only at the first time
     omf install
 end
-set -gx OMF_PLUGIN_UPDATED 1
+set -Ux OMF_PLUGIN_UPDATED 1
+
+# unset fish greeting message
+set -U fish_greeting
 
 # for fish config
 alias refish ". $OMF_CONFIG_INIT"

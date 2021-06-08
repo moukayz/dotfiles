@@ -1,12 +1,19 @@
-# git
-alias gss="git status --short"
+# set git alias
+alias gs="git status"
+alias gss="git status -s"
+alias gcm="git commit -m"
+alias gca="git commit -am"
 alias glo="git log --oneline"
+alias gln="git log --name-only"
+alias gaa="git add ."
+alias gprb="git pull --rebase"
 
-# for yadm
-alias yss="yadm status"
+# set yadm alias
+alias yss="yadm status -s"
 alias yp="yadm push"
 alias ya="yadm add"
-alias yca="yadm commit -a"
+alias yc="yadm commit -m"
+alias yca="yadm commit -am"
 
 alias ua-config="sudo update-alternatives --config"
 alias ua-install="sudo update-alternatives --install"

@@ -51,3 +51,10 @@ alias glo="git log --oneline"
 alias gln="git log --name-only"
 alias gaa="git add ."
 alias gprb="git pull --rebase"
+
+# set yadm alias
+alias yss="yadm status -s"
+alias yp="yadm push"
+alias ya="yadm add"
+alias yc="yadm commit -m"
+alias yca="yadm commit -am"
