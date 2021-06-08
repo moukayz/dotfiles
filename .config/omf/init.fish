@@ -1,5 +1,6 @@
 #!/usr/bin/env fish
 
+
 # compatitable with bash
 alias unset "set -e"
 
@@ -11,8 +12,11 @@ source ~/enable_proxy
 # start local proxy server(default is worker)
 proxy-worker
 
-# download missing plugins or themes
-omf install
+if not set -q OMF_PLUGIN_UPDATED
+    # download missing plugins or themes only at the first time
+    omf install
+end
+set -gx OMF_PLUGIN_UPDATED 1
 
 # for fish config
 alias refish ". $OMF_CONFIG_INIT"

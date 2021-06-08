@@ -17,20 +17,16 @@ if [ -n "$BASH_VERSION" ]; then
 fi
 
 # set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/bin" ] ; then
-    PATH="$HOME/bin:$PATH"
-fi
+[[ -d "$HOME/bin" ]] && PATH="$HOME/bin:$PATH"
 
 # set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/.local/bin" ] ; then
-    PATH="$HOME/.local/bin:$PATH"
-fi
+[[ -d "$HOME/.local/bin" ]] && PATH="$PATH:$HOME/.local/bin"
 
 # Created by `userpath` on 2020-07-30 13:04:13
-if [[ -d $HOME/.local/bin ]]; then
-    export PATH="$PATH:/home/legend/.local/bin:/usr/local/go/bin"
-    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-fi
+[[ -d /home/linuxbrew/.linuxbrew/bin ]] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+[[ -d /usr/local/go/bin ]] && PATH="$PATH:/usr/local/go/bin:$HOME/go/bin"
+ 
 
 # config nvm path
 export NVM_DIR="$HOME/.nvm"
@@ -40,7 +36,6 @@ export NVM_DIR="$HOME/.nvm"
 # config fzf
 export FZF_DEFAULT_COMMAND="fd --type f --hidden --follow --exclude .git"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin
 
 # set git alias
 alias gs="git status"

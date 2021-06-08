@@ -49,7 +49,7 @@ Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'junegunn/rainbow_parentheses.vim'
 
 Plug 'sheerun/vim-polyglot'
-Plug 'vim-syntastic/syntastic'
+" Plug 'vim-syntastic/syntastic'
 Plug 'plasticboy/vim-markdown'
 
 Plug 'preservim/nerdtree'
