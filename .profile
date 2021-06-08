@@ -26,7 +26,12 @@ fi
 [[ -d /home/linuxbrew/.linuxbrew/bin ]] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 [[ -d /usr/local/go/bin ]] && PATH="$PATH:/usr/local/go/bin:$HOME/go/bin"
- 
+
+# setup proxy environment variable
+[[ -f "$HOME"/enable_proxy ]] && source "$HOME"/enable_proxy
+
+# enable cntlm proxy server
+[[ -f "$HOME"/proxy-worker ]] && "$HOME"/proxy-worker
 
 # config nvm path
 export NVM_DIR="$HOME/.nvm"

@@ -6,12 +6,6 @@ alias unset "set -e"
 
 set OMF_CONFIG_INIT "$OMF_CONFIG/init.fish"
 
-# set system proxy
-source ~/enable_proxy
-
-# start local proxy server(default is worker)
-proxy-worker
-
 if not set -q OMF_PLUGIN_UPDATED
     # download missing plugins or themes only at the first time
     omf install
@@ -29,7 +23,9 @@ source $OMF_CONFIG/custom-alias
 function fish_user_key_bindings
     fish_default_key_bindings -M insert
 
-    fzf_key_bindings
+    if type fzf_key_bindings 2&>/dev/null
+        fzf_key_bindings
+    end
 
     fish_vi_key_bindings --no-erase insert
     set -gx fish_cursor_default block
