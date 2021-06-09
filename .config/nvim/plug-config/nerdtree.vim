@@ -19,7 +19,7 @@ function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
    exec 'autocmd filetype nerdtree syn match ' . a:extension .' #^\s\+.*'.  a:extension .'$#'
 endfunction
 
-call NERDTreeHighlightFile('cpp',    'cyan',   'none', 'green',   '#151515')
+call NERDTreeHighlightFile('cpp',    'cyan',   'none', 'cyan',   '#151515')
 call NERDTreeHighlightFile('ini',    'yellow',  'none', 'yellow',  '#151515')
 call NERDTreeHighlightFile('md',     'blue',    'none', '#3366FF', '#151515')
 call NERDTreeHighlightFile('c',      'yellow',  'none', 'yellow',  '#151515')

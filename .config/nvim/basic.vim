@@ -48,7 +48,7 @@ Plug 'preservim/tagbar'              " show code structure by using ctags
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'junegunn/rainbow_parentheses.vim'
 
-Plug 'sheerun/vim-polyglot'
+" Plug 'sheerun/vim-polyglot'
 " Plug 'vim-syntastic/syntastic'
 Plug 'plasticboy/vim-markdown'
 
@@ -58,10 +58,9 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 " git
 Plug 'tpope/vim-fugitive'
 
-" cpp
-" Plug 'xavierd/clang_complete'
-Plug 'ncm2/ncm2'
-Plug 'roxma/nvim-yarp'
+" syntax (not need any more, use coc instead)
+" Plug 'ncm2/ncm2'
+" Plug 'roxma/nvim-yarp'
 
 " misc
 Plug 'easymotion/vim-easymotion'
