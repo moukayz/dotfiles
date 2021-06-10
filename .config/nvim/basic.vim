@@ -57,6 +57,7 @@ endif
 
 call plug#begin()
 Plug 'junegunn/vim-plug'
+Plug 'christoomey/vim-tmux-navigator'
 
 " colorschemes
 Plug 'dracula/vim'
