@@ -6,6 +6,20 @@ set cmdheight=2
 set updatetime=300
 set shortmess+=c
 
+" set coc extensions
+let g:coc_global_extensions = [
+    \'coc-clangd',
+    \'coc-cmake',
+    \'coc-css',
+    \'coc-explorer',
+    \'coc-json',
+    \'coc-marketplace',
+    \'coc-python',
+    \'coc-sh',
+    \'coc-spell-checker',
+    \'coc-fzf-preview'
+    \]
+
 if has("patch-8.1.1564")
     set signcolumn=number
 else
@@ -85,3 +99,10 @@ augroup FormatSave
     autocmd!
     autocmd BufWritePost * silent! call CocAction('format')
 augroup END
+
+" map coc action
+vmap <leader>a <Plug>(coc-codeaction-selected)
+nmap <leader>a <Plug>(coc-codeaction-selected)
+
+" map for coc-explorer
+nnoremap <space>e :CocCommand explorer<CR>
