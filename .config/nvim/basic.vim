@@ -14,8 +14,50 @@ set clipboard+=unnamedplus
 set termguicolors
 set background=dark
 
+" map modification for init.vim
+augroup ReloadVim
+    autocmd!
+    autocmd! BufWritePost ~/.config/nvim/**.vim source % | echom "Reloaded " . $MYVIMRC | redraw | e
+augroup END
+
+""" Enable syntax for CMakeLists.txt file
+augroup CMakeSyntax
+    autocmd!
+    autocmd BufNewFile,BufRead CMakeLists.txt set filetype=cmake
+augroup END
+
+""" enable syntax for local bash config file
+augroup SetBashFileType
+    autocmd!
+    autocmd BufRead,BufNewFile,BufEnter .bash.* set filetype=sh
+augroup END
+
+""" basic config
+filetype plugin indent on
+set tabstop=4 softtabstop=4 shiftwidth=4 expandtab smarttab autoindent
+set incsearch ignorecase smartcase hlsearch
+set ruler laststatus=2 showcmd
+set wrap breakindent " wrapped line has the same indent level with previous line
+set encoding=utf-8   " use utf-8 encoding
+set title            " display window title
+set number           " enable line number
+set relativenumber
+set cursorline
+set showmatch
+set autoread
+
 """ Install plugins
+" auto install vim-plug if it not installed
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+let plug_vim_path = data_dir . '/autoload/plug.vim'
+if empty(glob(plug_vim_path))
+    silent execute '!curl -fLko ' . plug_vim_path . ' --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
 call plug#begin()
+Plug 'junegunn/vim-plug'
+
 " colorschemes
 Plug 'dracula/vim'
 Plug 'junegunn/seoul256.vim'
@@ -77,38 +119,6 @@ Plug 'dbeniamine/cheat.sh-vim'
 " Plug 'wikitopian/hardmode'
 
 call plug#end()
-
-" map modification for init.vim
-augroup ReloadVim
-    autocmd!
-    autocmd! BufWritePost ~/.config/nvim/**.vim source % | echom "Reloaded " . $MYVIMRC | redraw | e
-augroup END
-
-""" Enable syntax for CMakeLists.txt file
-augroup CMakeSyntax
-    autocmd!
-    autocmd BufNewFile,BufRead CMakeLists.txt set filetype=cmake
-augroup END
-
-""" enable syntax for local bash config file
-augroup SetBashFileType
-    autocmd!
-    autocmd BufRead,BufNewFile,BufEnter .bash.* set filetype=sh
-augroup END
-
-""" basic config
-filetype plugin indent on
-set tabstop=4 softtabstop=4 shiftwidth=4 expandtab smarttab autoindent
-set incsearch ignorecase smartcase hlsearch
-set ruler laststatus=2 showcmd
-set wrap breakindent " wrapped line has the same indent level with previous line
-set encoding=utf-8   " use utf-8 encoding
-set title            " display window title
-set number           " enable line number
-set relativenumber
-set cursorline
-set showmatch
-set autoread
 
 
 """"""""""""""""""""""""" colorful
