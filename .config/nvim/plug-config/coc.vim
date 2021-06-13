@@ -17,7 +17,8 @@ let g:coc_global_extensions = [
     \'coc-python',
     \'coc-sh',
     \'coc-spell-checker',
-    \'coc-fzf-preview'
+    \'coc-fzf-preview',
+    \'coc-diagnostic'
     \]
 
 if has("patch-8.1.1564")
