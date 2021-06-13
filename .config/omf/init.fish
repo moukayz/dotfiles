@@ -5,7 +5,6 @@ set OMF_CONFIG_INIT "$OMF_CONFIG/init.fish"
 if not set -q OMF_PLUGIN_UPDATED
     # download missing plugins or themes only at the first time
     omf install
-    omf reload
 end
 set -Ux OMF_PLUGIN_UPDATED 1
 
