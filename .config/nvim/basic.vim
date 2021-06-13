@@ -55,71 +55,78 @@ if empty(glob(plug_vim_path))
     autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-call plug#begin()
-Plug 'junegunn/vim-plug'
-Plug 'christoomey/vim-tmux-navigator'
+silent! if plug#begin()
+    Plug 'junegunn/vim-plug'
+    Plug 'christoomey/vim-tmux-navigator'
 
-" colorschemes
-Plug 'dracula/vim'
-Plug 'junegunn/seoul256.vim'
-Plug 'joshdick/onedark.vim'
-Plug 'vim-airline/vim-airline-themes'
+    " colorschemes
+    Plug 'dracula/vim'
+    Plug 'junegunn/seoul256.vim'
+    Plug 'joshdick/onedark.vim'
+    Plug 'vim-airline/vim-airline-themes'
 
-" snippets
-Plug 'honza/vim-snippets'
+    " snippets
+    Plug 'honza/vim-snippets'
 
-" tools
-Plug 'junegunn/fzf', { 'do' : { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-Plug 'airblade/vim-rooter'
-Plug 'junegunn/vim-easy-align' " alianment operations
-Plug 'tpope/vim-surround'      " surrounding operations
-Plug 'preservim/nerdcommenter' " auto comment with shortcut
-Plug 'justinmk/vim-sneak'      " quick search based on first two chars
+    " tools
+    Plug 'junegunn/fzf', { 'do' : { -> fzf#install() } }
+    Plug 'junegunn/fzf.vim'
+    Plug 'airblade/vim-rooter'
+    Plug 'junegunn/vim-easy-align' " alianment operations
+    Plug 'tpope/vim-surround'      " surrounding operations
+    Plug 'preservim/nerdcommenter' " auto comment with shortcut
+    Plug 'justinmk/vim-sneak'      " quick search based on first two chars
 
-" display
-Plug 'machakann/vim-highlightedyank' " highlight yanked text
-Plug 'junegunn/goyo.vim'             " concentrate only on text!
-Plug 'junegunn/limelight.vim'        " highlight current paragraph
-Plug 'junegunn/vim-emoji'            " get emoji from name
-Plug 'ryanoasis/vim-devicons'        " awesome file icons
-Plug 'vim-airline/vim-airline'       " just status line
-Plug 'mhinz/vim-startify'            " vim startup page
-Plug 'preservim/tagbar'              " show code structure by using ctags
+    " display
+    Plug 'machakann/vim-highlightedyank' " highlight yanked text
+    Plug 'junegunn/goyo.vim'             " concentrate only on text!
+    Plug 'junegunn/limelight.vim'        " highlight current paragraph
+    Plug 'junegunn/vim-emoji'            " get emoji from name
+    Plug 'ryanoasis/vim-devicons'        " awesome file icons
+    Plug 'vim-airline/vim-airline'       " just status line
+    Plug 'mhinz/vim-startify'            " vim startup page
+    Plug 'preservim/tagbar'              " show code structure by using ctags
 
-" syntax highlighting
-Plug 'octol/vim-cpp-enhanced-highlight'
-Plug 'junegunn/rainbow_parentheses.vim'
+    " syntax highlighting
+    Plug 'octol/vim-cpp-enhanced-highlight'
+    Plug 'junegunn/rainbow_parentheses.vim'
 
-" Plug 'sheerun/vim-polyglot'
-" Plug 'vim-syntastic/syntastic'
-Plug 'plasticboy/vim-markdown'
+    " Plug 'sheerun/vim-polyglot'
+    " Plug 'vim-syntastic/syntastic'
+    Plug 'plasticboy/vim-markdown'
 
-Plug 'preservim/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
+    Plug 'preservim/nerdtree'
+    Plug 'Xuyuanp/nerdtree-git-plugin'
 
-" git
-Plug 'tpope/vim-fugitive'
+    " git
+    Plug 'tpope/vim-fugitive'
 
-" syntax (not need any more, use coc instead)
-" Plug 'ncm2/ncm2'
-" Plug 'roxma/nvim-yarp'
+    " syntax (not need any more, use coc instead)
+    " Plug 'ncm2/ncm2'
+    " Plug 'roxma/nvim-yarp'
 
-" misc
-Plug 'easymotion/vim-easymotion'
-Plug 'vimwiki/vimwiki'
-Plug 'jiangmiao/auto-pairs'
+    " misc
+    Plug 'easymotion/vim-easymotion'
+    Plug 'vimwiki/vimwiki'
+    Plug 'jiangmiao/auto-pairs'
 
-" code completion
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    " code completion
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-" cheat.sh support for vim
-Plug 'dbeniamine/cheat.sh-vim'
+    " cheat.sh support for vim
+    Plug 'dbeniamine/cheat.sh-vim'
 
-" vim ninjia !!!!
-" Plug 'wikitopian/hardmode'
+    " vim ninja !!!!
+    " Plug 'wikitopian/hardmode'
 
-call plug#end()
+    call plug#end()
+
+    " load configs for specified plugins
+    source ~/.config/nvim/plug-config/coc.vim
+    source ~/.config/nvim/plug-config/misc.vim
+    source ~/.config/nvim/plug-config/nerdtree.vim
+
+endif
 
 
 """"""""""""""""""""""""" colorful
