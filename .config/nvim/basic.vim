@@ -1,6 +1,9 @@
 """ set fzf vim auto completion
 set rtp+=/home/linuxbrew/.linuxbrew/opt/fzf
 
+" setup vim config directory(neovim is '$HOME/.config/nvim')
+let g:vim_config_dir=fnamemodify($MYVIMRC, ":p:h")
+
 """ set custom leader
 let mapleader="\\"
 
@@ -45,6 +48,8 @@ set relativenumber
 set cursorline
 set showmatch
 set autoread
+set list
+set listchars=tab:›\ ,trail:⋅,space:⋅
 
 """ Install plugins
 " auto install vim-plug if it not installed
@@ -126,6 +131,8 @@ silent! if plug#begin()
     source ~/.config/nvim/plug-config/misc.vim
     source ~/.config/nvim/plug-config/nerdtree.vim
 
+    color onedark
+
 endif
 
 
@@ -133,7 +140,6 @@ endif
 syntax on
 set noshowmode
 " color onedark
-color dracula
 
 " underline current line
 " hi CursorLine cterm=underline gui=underline

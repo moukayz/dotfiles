@@ -33,7 +33,7 @@ inoremap <M-u> <ESC>viwUA
 " use C-d to delete current line in insert mode
 inoremap <C-d> <ESC>ddi
 
-" use H and L to go the frist and the last char of current line
+" use H and L to go the first and the last char of current line
 nnoremap H ^
 nnoremap L $
 

@@ -1,8 +1,21 @@
 {
+    "hover.autoHide": true,
+    "hover.target": "float",
     "explorer.icon.enableNerdfont": true,
     "explorer.keyMappings.global": {
-        "<space>":"toggleSelection"
+        "<space>": "toggleSelection"
     },
-    "http.proxyStrictSSL": false
-
+    "http.proxyStrictSSL": false,
+    "sh.enable": true,
+    "cSpell.userWords": [
+        "cmake",
+        "test"
+    ],
+    "diagnostic-languageserver.filetypes": {
+        "sh": "shellcheck",
+        "vim": "vint"
+    },
+    "diagnostic-languageserver.formatFiletypes": {
+        "sh": "shfmt"
+    }
 }
