@@ -1,9 +1,6 @@
 """ set fzf vim auto completion
 set rtp+=/home/linuxbrew/.linuxbrew/opt/fzf
 
-" setup vim config directory(neovim is '$HOME/.config/nvim')
-let g:vim_config_dir=fnamemodify($MYVIMRC, ":p:h")
-
 """ set custom leader
 let mapleader="\\"
 
@@ -12,8 +9,10 @@ let g:python3_host_prog = '/usr/bin/python3'
 let g:loaded_python_provider = 0
 
 set clipboard+=unnamedplus
+" always set vim-shell to bash (even use another shell, eg. fish)
+set shell=/bin/bash 
 
-""" set true color
+" set true color
 set termguicolors
 set background=dark
 
@@ -69,6 +68,8 @@ silent! if plug#begin()
     Plug 'junegunn/seoul256.vim'
     Plug 'joshdick/onedark.vim'
     Plug 'vim-airline/vim-airline-themes'
+    Plug 'ayu-theme/ayu-vim'
+    Plug 'sonph/onehalf', { 'rtp' : 'vim' }
 
     " snippets
     Plug 'honza/vim-snippets'
@@ -105,6 +106,7 @@ silent! if plug#begin()
 
     " git
     Plug 'tpope/vim-fugitive'
+    Plug 'airblade/vim-gitgutter'
 
     " syntax (not need any more, use coc instead)
     " Plug 'ncm2/ncm2'
@@ -114,6 +116,7 @@ silent! if plug#begin()
     Plug 'easymotion/vim-easymotion'
     Plug 'vimwiki/vimwiki'
     Plug 'jiangmiao/auto-pairs'
+    Plug 'tpope/vim-unimpaired'
 
     " code completion
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -121,15 +124,21 @@ silent! if plug#begin()
     " cheat.sh support for vim
     Plug 'dbeniamine/cheat.sh-vim'
 
-    " vim ninja !!!!
+    " languages
+    Plug 'dag/vim-fish'
+
+    "" vim ninja !!!!
     " Plug 'wikitopian/hardmode'
 
     call plug#end()
 
     " load configs for specified plugins
-    source ~/.config/nvim/plug-config/coc.vim
-    source ~/.config/nvim/plug-config/misc.vim
-    source ~/.config/nvim/plug-config/nerdtree.vim
+    source $VIM_PLUGIN_CONFIG_DIR/coc.vim
+    source $VIM_PLUGIN_CONFIG_DIR/misc.vim
+    source $VIM_PLUGIN_CONFIG_DIR/nerdtree.vim
+    source $VIM_PLUGIN_CONFIG_DIR/fugitive.vim
+    source $VIM_PLUGIN_CONFIG_DIR/gitgutter.vim
+    source $VIM_PLUGIN_CONFIG_DIR/fzf.vim
 
     color onedark
 

@@ -12,8 +12,8 @@ nnoremap Y yyp
 vnoremap Y y`>pgv
 
 " map modification for init.vim
-nnoremap <leader>. <Esc>:tabe   $MYVIMRC<CR>
-nnoremap <leader>r <Esc>:source $MYVIMRC<CR>
+nnoremap <silent> <leader>. <Esc>:tabe   $MYVIMRC<CR>
+nnoremap <silent> <leader>r <Esc>:source $MYVIMRC \| redraw \| e<CR>
 
 " keep search matches in the middle of the screen
 nnoremap n nzz

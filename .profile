@@ -39,7 +39,8 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # config fzf
-export FZF_DEFAULT_COMMAND="fd --type f --hidden --follow --exclude .git"
+# use `exec-batch` to sort fd results by mtime
+export FZF_DEFAULT_COMMAND="fd --type f --hidden --follow --exclude .git -X ls -t"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 # set git alias

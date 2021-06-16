@@ -14,7 +14,7 @@ endif
 
 """ RainbowParentheses
 let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
-let g:rainbow#blacklist = [233,234,235]
+let g:rainbow#blacklist = [233,234,235,238,248,59]
 " this plugin will conflict with some filetypes, so disable it for those types
 let rainbow_blacklist = ['vimwiki', 'md', 'cmake']
 augroup SetRainbowParentheses
@@ -31,13 +31,11 @@ let g:cpp_posix_standard                  = 1
 let g:cpp_experimental_template_highlight = 1
 let g:cpp_concepts_highlight = 1
 
-""" CppClangComplete
-let g:clang_library_path = '/usr/lib/llvm-10/lib'
-
 """ vim-airline
-let g:airline_theme='onedark'
+let g:airline_theme='bubblegum'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#formatter = 'unique_tail'
 
 """ vim-easy-align
 xmap ga <Plug>(EasyAlign)
@@ -64,3 +62,7 @@ augroup END
 """ vim-highlightedyank
 let g:highlightedyank_highlight_duration = 500
 let b:highlightedyank_highlight_duration = 500
+
+""" AutoPair
+" disable auto-pair map
+let g:AutoPairsShortcutToggle = ''

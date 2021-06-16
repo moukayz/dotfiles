@@ -119,4 +119,13 @@ nmap <leader>a <Plug>(coc-codeaction-selected)
 nmap <space>a  <Plug>(coc-codeaction-cursor)
 
 " map for coc-explorer
-nnoremap <space>e :CocCommand explorer<CR>
+nnoremap <space>ee :CocCommand explorer<CR>
+" Use preset argument to open it
+nnoremap <space>ed :CocCommand explorer --preset .vim<CR>
+nnoremap <space>ef :CocCommand explorer --preset floating<CR>
+nnoremap <space>ec :CocCommand explorer --preset cocConfig<CR>
+nnoremap <space>eb :CocCommand explorer --preset buffer<CR>
+
+" List all presets
+nnoremap <space>el :CocList explPresets"
+
