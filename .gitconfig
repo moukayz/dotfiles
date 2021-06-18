@@ -20,7 +20,7 @@
     whitespace-error-style = 22 reverse
 
 [delta "myconfig"]
-	syntax-theme = TwoDark
+	; syntax-theme =
 	navigate = true
 	; side-by-side = true
 	commit-decoration-style = bold yellow box ul
