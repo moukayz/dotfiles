@@ -47,6 +47,7 @@ set relativenumber
 set cursorline
 set showmatch
 set autoread
+set exrc             " enable project-based vim config file
 set list
 set listchars=tab:›\ ,trail:⋅,space:⋅
 
@@ -126,6 +127,7 @@ silent! if plug#begin()
 
     " languages
     Plug 'dag/vim-fish'
+    Plug 'cdelledonne/vim-cmake'
 
     "" vim ninja !!!!
     " Plug 'wikitopian/hardmode'

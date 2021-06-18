@@ -129,3 +129,6 @@ nnoremap <space>eb :CocCommand explorer --preset buffer<CR>
 " List all presets
 nnoremap <space>el :CocList explPresets"
 
+" show function signature in insert mode
+inoremap <expr> <M-h> CocActionAsync('showSignatureHelp')
+nnoremap <space>f :<C-u>call CocActionAsync('showSignatureHelp')<CR>
