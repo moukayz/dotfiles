@@ -32,6 +32,15 @@ function error_log {
 	printf "${RED}==x %s${NOCOLOR}\n" "$*"
 }
 
+function warn_log {
+	printf "${YELLOW}==x %s${NOCOLOR}\n" "$*"
+}
+
+function command_exists {
+	command -v "$1" &>/dev/null
+	return "$?"
+}
+
 readonly BREW_BIN="/home/linuxbrew/.linuxbrew/bin"
 readonly LOCAL_DIR="${HOME:-~}"/.local
 readonly LOCAL_BIN="${LOCAL_DIR}"/bin
@@ -41,8 +50,12 @@ rm -rf /tmp/downloads && mkdir -p /tmp/downloads
 cd /tmp/downloads || exit
 
 # yadm
-info_log "Installing yadm..."
-curl -fsSLo "$LOCAL_BIN"/yadm https://github.com/TheLocehiliosan/yadm/raw/master/yadm && chmod a+x "$LOCAL_BIN"/yadm
+if command_exists yadm; then
+	warn_log "yadm already installed; skip!"
+else
+	info_log "Installing yadm..."
+	curl -fsSLo "$LOCAL_BIN"/yadm https://github.com/TheLocehiliosan/yadm/raw/master/yadm && chmod a+x "$LOCAL_BIN"/yadm
+fi
 
 info_log "Cloning dotfiles"
 "$LOCAL_BIN"/yadm clone -f https://github.com/moukayz/dotfiles.git
@@ -50,7 +63,7 @@ info_log "Cloning dotfiles"
 
 # linuxbrew
 info_log "Installing homebrew..."
-curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh -o- | bash
+/usr/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 info_log "Setup homebrew environment variables..."
 [[ -d "$BREW_BIN" ]] && eval "$($BREW_BIN/brew shellenv)"
@@ -62,8 +75,8 @@ brew bundle --global
 set -e
 
 # zsh
-# sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-# mv ~/.zshrc.pre-on-my-zsh ~/.zshrc
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+mv ~/.zshrc.pre-on-my-zsh ~/.zshrc
 
 # NVM
 info_log "Installing npm..."
@@ -87,5 +100,5 @@ info_log "[neovim] Installing nvim plugins..."
 
 # oh-my-fish
 info_log "Installing fish omf..."
-curl -sSLf -o- https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install >omf-install
+curl -sSLf https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install -o omf-install
 fish omf-install --noninteractive
