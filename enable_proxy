@@ -1,4 +1,7 @@
 #!/bin/sh
 
-export http_proxy="http://localhost:33221"
-export https_proxy="http://localhost:33221" 
+# enable proxy only if `cntlm` or `tinyproxy` installed
+if command -v cntlm >/dev/null 2>&1 || command -v tinyproxy >/dev/null 2>&1; then
+	export http_proxy="http://localhost:33221"
+	export https_proxy="http://localhost:33221"
+fi

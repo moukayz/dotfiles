@@ -1,7 +1,6 @@
-#!/bin/bash
-
-if ! service cntlm status 2&>/dev/null; then
-    sudo service tinyproxy stop
-    sudo service cntlm restart
-fi
-
+#!/bin/sh
+#
+# if ! service cntlm status >/dev/null; then
+#     sudo service tinyproxy stop
+#     sudo service cntlm restart
+# fi

@@ -50,16 +50,17 @@ rm -rf /tmp/downloads && mkdir -p /tmp/downloads
 cd /tmp/downloads || exit
 
 # yadm
+info_log "Installing yadm..."
 if command_exists yadm; then
-	warn_log "yadm already installed; skip!"
+	warn_log "yadm already installed; Skip!"
 else
-	info_log "Installing yadm..."
 	curl -fsSLo "$LOCAL_BIN"/yadm https://github.com/TheLocehiliosan/yadm/raw/master/yadm && chmod a+x "$LOCAL_BIN"/yadm
 fi
 
 info_log "Cloning dotfiles"
 "$LOCAL_BIN"/yadm clone -f https://github.com/moukayz/dotfiles.git
-"$LOCAL_BIN"/yadm checkout "$HOME" # overwrite original files(eg. ~/.profile)
+# overwrite original files(eg. ~/.profile)
+"$LOCAL_BIN"/yadm checkout "$HOME"
 
 # linuxbrew
 info_log "Installing homebrew..."
@@ -75,28 +76,38 @@ brew bundle --global
 set -e
 
 # zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-mv ~/.zshrc.pre-on-my-zsh ~/.zshrc
+info_log "Installing oh-my-zsh..."
+curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -o omz-install
+sh omz-install --unattended # install ohmyzsh without chsh or run zsh
 
 # NVM
 info_log "Installing npm..."
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
+if type nvm &>/dev/null || [[ -d "${HOME}/.nvm" ]]; then
+	warn_log "nvm already installed; Skip!"
+else
+	curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
 
-NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+	# setup nvm environment variables
+	NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+	[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
-info_log "Installing node using npm..."
-nvm install node
+	info_log "Installing node using npm..."
+	nvm install node
+fi
 
 # Nvim
 info_log "Installing neovim..."
-curl -fsSL -o- "https://github.com/neovim/neovim/releases/download/v0.4.4/nvim-linux64.tar.gz" |
-	tar -xz -C "$LOCAL_DIR" --strip-components=1
-# info_log "[neovim] installing vim-plug..."
-# curl -fsSLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
-#     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-info_log "[neovim] Installing nvim plugins..."
-[[ -f "${LOCAL_BIN}"/nvim ]] && "${LOCAL_BIN}"/nvim '+PlugUpdate' '+PlugClean!' '+qall'
+if [[ -f "${LOCAL_BIN}"/nvim ]]; then
+	warn_log "neovim already installed; Skip!"
+else
+	curl -fsSL -o- "https://github.com/neovim/neovim/releases/download/v0.4.4/nvim-linux64.tar.gz" |
+		tar -xz -C "$LOCAL_DIR" --strip-components=1
+	# info_log "[neovim] installing vim-plug..."
+	# curl -fsSLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+	#     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+	info_log "[neovim] Installing nvim plugins..."
+	[[ -f "${LOCAL_BIN}"/nvim ]] && "${LOCAL_BIN}"/nvim '+PlugUpdate' '+PlugClean!' '+qall'
+fi
 
 # oh-my-fish
 info_log "Installing fish omf..."
