@@ -77,8 +77,12 @@ set -e
 
 # zsh
 info_log "Installing oh-my-zsh..."
-curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -o omz-install
-sh omz-install --unattended # install ohmyzsh without chsh or run zsh
+if command_exists zsh; then
+    curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -o omz-install
+    sh omz-install --unattended # install ohmyzsh without chsh or run zsh
+else
+    warn_log "zsh not installed; Skip install oh-my-zsh"
+fi
 
 # NVM
 info_log "Installing npm..."
@@ -111,5 +115,9 @@ fi
 
 # oh-my-fish
 info_log "Installing fish omf..."
-curl -sSLf https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install -o omf-install
-fish omf-install --noninteractive
+if command_exists fish; then
+    curl -sSLf https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install -o omf-install
+    fish omf-install --noninteractive
+else
+    warn_log "fish shell not installed; Skip installing omf"
+fi
