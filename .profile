@@ -41,7 +41,7 @@ export NVM_DIR="$HOME/.nvm"
 # config fzf
 # use `exec-batch` to sort fd results by mtime
 export FZF_DEFAULT_COMMAND="fd --type f --hidden --follow --exclude .git -X ls -t"
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_CTRL_T_COMMAND="fd --type f --hidden --follow --exclude .git"
 
 # set git alias
 alias gs="git status"
