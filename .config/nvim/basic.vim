@@ -4,6 +4,12 @@ set rtp+=/home/linuxbrew/.linuxbrew/opt/fzf
 """ set custom leader
 let mapleader="\\"
 
+" in vim instead of nvim, need to set these options to enable `termguicolors`
+if !has('nvim')
+    let &t_8f = "\<Esc>[38:2:%lu:%lu:%lum"
+    let &t_8b = "\<Esc>[48:2:%lu:%lu:%lum"
+endif
+
 """ set nvim python provider
 let g:python3_host_prog = '/usr/bin/python3'
 let g:loaded_python_provider = 0
