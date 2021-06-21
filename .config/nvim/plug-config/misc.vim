@@ -13,15 +13,17 @@ if exists("*SyntasticStatuslineFlag")
 endif
 
 """ RainbowParentheses
-let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
-let g:rainbow#blacklist = [233,234,235,238,248,59]
-" this plugin will conflict with some filetypes, so disable it for those types
-let rainbow_blacklist = ['vimwiki', 'md', 'cmake']
-augroup SetRainbowParentheses
-    autocmd!
-    autocmd BufEnter,WinEnter * RainbowParentheses!
-    autocmd BufEnter,WinEnter * if index(rainbow_blacklist, &ft) < 0 | RainbowParentheses
-augroup end
+if exists(":RainbowParentheses")
+    let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
+    let g:rainbow#blacklist = [233,234,235,238,248,59]
+    " this plugin will conflict with some filetypes, so disable it for those types
+    let rainbow_blacklist = ['vimwiki', 'md', 'cmake']
+    augroup SetRainbowParentheses
+        autocmd!
+        autocmd BufEnter,WinEnter * RainbowParentheses!
+        autocmd BufEnter,WinEnter * if index(rainbow_blacklist, &ft) < 0 | RainbowParentheses
+    augroup end
+endif
 
 """ CppEnhancedHighlight
 let g:cpp_class_scope_hightlist           = 1
