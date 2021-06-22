@@ -1,0 +1,11 @@
+{
+    :translate-shell          "0.9.6"
+    :show-original-dictionary true
+    :show-dictionary          true
+    :show-alternatives        false
+    :show-prompt-message      false
+    :view                     false
+    :hl                       "en"
+    :tl                       "zh"
+    :theme                    "random"
+}
