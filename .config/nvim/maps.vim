@@ -43,7 +43,6 @@ map <Left>  <nop>
 map <Right> <nop>
 map <Down>  <nop>
 
-nnoremap <C-p> <Esc>:FZF<CR>
 
 
 " basic abbr
