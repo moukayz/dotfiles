@@ -119,13 +119,26 @@ vmap <leader>a <Plug>(coc-codeaction-selected)
 nmap <leader>a <Plug>(coc-codeaction-selected)
 nmap <space>a  <Plug>(coc-codeaction-cursor)
 
-" map for coc-explorer
+""" map for coc-explorer
 nnoremap <space>ee :CocCommand explorer<CR>
 " Use preset argument to open it
-nnoremap <space>ed :CocCommand explorer --preset .vim<CR>
+" `<s>ed` to open nvim config dir tree
+nnoremap <space>ed :CocCommand explorer --preset .vim<CR> 
+" `<s>ef` to open floating dir tree
 nnoremap <space>ef :CocCommand explorer --preset floating<CR>
-nnoremap <space>ec :CocCommand explorer --preset cocConfig<CR>
+" `<s>ec to open dir tree of the current buffer`
+nnoremap <space>ec :CocCommand explorer --root-strategies sourceBuffer<CR>
+" `<s>eb to open current buffers tree`
 nnoremap <space>eb :CocCommand explorer --preset buffer<CR>
+" open explorer when vim opens a directory
+autocmd StdinReadPre * let s:std_in=1
+augroup OpenExplorerWhenStart
+    autocmd!
+    autocmd VimEnter * silent! autocmd! FileExplorer
+    autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in")
+                \| exe 'CocCommand explorer '.argv()[0]
+                \| endif
+augroup END
 
 " List all presets
 nnoremap <space>el :CocList explPresets"

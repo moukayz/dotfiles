@@ -51,9 +51,6 @@ let g:NERDCommentEmptyLines      = 1
 let g:NERDTrimTrailingWhitespace = 1
 let g:NERDToggleCheckAllLines    = 1
 
-""" devicons
-let g:webdevicons_conceal_nerdtree_brackets = 0
-
 """ vim-hardmode
 let g:HardMode_level='wannabe'
 augroup VimHardMode
@@ -64,6 +61,11 @@ augroup END
 """ vim-highlightedyank
 let g:highlightedyank_highlight_duration = 500
 let b:highlightedyank_highlight_duration = 500
+
+""" vim-rooter
+" for non-project files, change working directory to the dir of the current
+" buffer
+let g:rooter_change_directory_for_non_project_files = 'current'
 
 """ AutoPair
 " disable auto-pair map

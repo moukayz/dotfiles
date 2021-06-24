@@ -28,7 +28,7 @@ set background=dark
 " map modification for init.vim
 augroup ReloadVim
     autocmd!
-    autocmd! BufWritePost ~/.config/nvim/**.vim source % | echom "Reloaded " . $MYVIMRC | redraw | e
+    autocmd! BufWritePost ~/.config/nvim/**.vim,~/.vimrc source % | echom "Reloaded " . $MYVIMRC | redraw | e
 augroup END
 
 """ Enable syntax for CMakeLists.txt file
@@ -138,7 +138,6 @@ silent! if plug#begin()
     Plug 'dag/vim-fish'
     Plug 'cdelledonne/vim-cmake'
 
-    "" vim ninja !!!!
     " Plug 'wikitopian/hardmode'
 
     call plug#end()
@@ -154,7 +153,6 @@ silent! if plug#begin()
     color onedark
 
 endif
-
 
 """"""""""""""""""""""""" colorful
 syntax on
