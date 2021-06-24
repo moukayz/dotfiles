@@ -1,5 +1,4 @@
 #!/usr/bin/env zsh
 
-emulate sh
+# load general shell configs
 source "${HOME}/.profile"
-emulate zsh
