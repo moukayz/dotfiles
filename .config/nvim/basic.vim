@@ -4,8 +4,11 @@ set rtp+=/home/linuxbrew/.linuxbrew/opt/fzf
 """ set custom leader
 let mapleader="\\"
 
-" in vim instead of nvim, need to set these options to enable `termguicolors`
-if !has('nvim')
+" in vim instead of nvim, and &term doesn't contain 'xterm'
+" (eg. in tmux &term is `screen-256color`)
+" need to set these options to enable `termguicolors`
+if !has('nvim') && &term !~ 'xterm'
+    " the two options will only be set when &term is `xterm` like
     let &t_8f = "\<Esc>[38:2:%lu:%lu:%lum"
     let &t_8b = "\<Esc>[48:2:%lu:%lu:%lum"
 endif
