@@ -42,6 +42,31 @@ endfunction
 
 " search and execute commands quickly
 nnoremap <silent> <M-p> :<C-u>Commands<CR>
+
+function! s:IsInGitRepo()
+    call system('git rev-list -1 HEAD >/dev/null 2>&1')
+    return v:shell_error == 0
+endfunction
+
+function! s:FzfWithMRU(path)
+    let l:mru_fzf_command = 'fd --type f --hidden --follow --exclude .git -X ls -t'
+    let l:saved_command = $FZF_DEFAULT_COMMAND
+
+    " if in git repo, change fzf command to sort file with mtime(mru)
+    " if not in git repo, just use the default fzf command 
+    if <SID>IsInGitRepo()
+        let $FZF_DEFAULT_COMMAND = l:mru_fzf_command
+    endif
+
+    if empty(a:path)
+        FZF
+    else
+        FZF a:path
+    endif
+
+    let $FZF_DEFAULT_COMMAND = l:saved_command
+endfunction
+
 " quick open files in the project
-nnoremap <C-p> <Esc>:FZF<CR>
+nnoremap <C-p> <Esc>:call <SID>FzfWithMRU('')<CR>
 
