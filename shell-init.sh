@@ -79,7 +79,8 @@ set -e
 info_log "Installing oh-my-zsh..."
 if command_exists zsh; then
     curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -o omz-install
-    sh omz-install --unattended # install ohmyzsh without chsh or run zsh
+    # install ohmyzsh without chsh or run zsh, and keep original .zshrc
+    sh omz-install --unattended --keep-zshrc
 else
     warn_log "zsh not installed; Skip install oh-my-zsh"
 fi
