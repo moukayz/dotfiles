@@ -59,6 +59,7 @@ set autoread
 set exrc             " enable project-based vim config file
 set list
 set listchars=tab:›\ ,trail:⋅,space:⋅
+set colorcolumn=80
 
 """ Install plugins
 " auto install vim-plug if it not installed
