@@ -1,6 +1,7 @@
 #!/usr/bin/env fish
 
 set OMF_CONFIG_INIT "$OMF_CONFIG/init.fish"
+set CUSTOM_CONFIG_DIR "$HOME/.config/moukayz"
 
 if not set -q OMF_PLUGIN_UPDATED
     # download missing plugins or themes only at the first time
@@ -19,7 +20,7 @@ alias cafish "cat $OMF_CONFIG_INIT"
 alias unset "set -e"
 
 
-source $OMF_CONFIG/custom-alias
+source $CUSTOM_CONFIG_DIR/custom_alias
 
 # enable vi-mode
 function fish_user_key_bindings
