@@ -30,19 +30,5 @@ export FZF_DEFAULT_OPTS='--color=fg:#cbccc6,bg:#1f2430,hl:#707a8c --color=fg+:#7
 # setup fzf layout style
 export FZF_DEFAULT_OPTS="${FZF_DEFAULT_OPTS} --border --height 40% --reverse --prompt=\"=> \""
 
-# set git alias
-alias gs="git status"
-alias gss="git status -s"
-alias gcm="git commit -m"
-alias gca="git commit -am"
-alias glo="git log --oneline"
-alias gln="git log --name-only"
-alias gaa="git add ."
-alias gprb="git pull --rebase"
-
-# set yadm alias
-alias yss="yadm status -s"
-alias yp="yadm push"
-alias ya="yadm add"
-alias yc="yadm commit -m"
-alias yca="yadm commit -am"
+# setup default shell editor
+export EDITOR="vim"

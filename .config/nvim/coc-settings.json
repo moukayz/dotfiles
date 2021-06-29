@@ -18,6 +18,17 @@
     "diagnostic-languageserver.formatFiletypes": {
         "sh": "shfmt"
     },
+    "diagnostic-languageserver.formatters": {
+        "shfmt": {
+            "command": "shfmt",
+            "args": [
+                "-bn",
+                "-i",
+                "2",
+                "-"
+            ]
+        }
+    },
     "explorer.presets": {
         ".vim": {
             "root-uri": "~/.config/nvim"

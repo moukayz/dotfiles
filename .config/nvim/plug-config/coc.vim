@@ -145,7 +145,7 @@ augroup END
 augroup QuitExplorerWhenLast
     autocmd!
     autocmd BufEnter \[coc-explorer\]-* 
-                \if tabpagenr("$") == 1 && winnr("$") == 1 
+                \if tabpagenr("$") == 1 && winnr("$") == 1 && len(getbufinfo()) <= 2
                 \| q | endif
 augroup END
 
