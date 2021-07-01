@@ -1,3 +1,8 @@
+" Overwrite FZF_DEFAULT_OPTS environment variable in vim
+let $FZF_DEFAULT_OPTS="--preview-window 'up:70%'
+            \ --bind ctrl-b:preview-page-up,ctrl-f:preview-page-down,
+            \ctrl-u:preview-half-page-up,ctrl-d:preview-half-page-down" 
+
 " Define dynamicall refreshed Rg-fzf
 function! RipgrepFzf(query, fullscreen)
     let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case -- %s || true'
