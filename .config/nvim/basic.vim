@@ -137,7 +137,6 @@ silent! if plug#begin()
 
     " languages
     Plug 'dag/vim-fish'
-    Plug 'cdelledonne/vim-cmake'
     Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install()  }, 'for': ['markdown', 'vim-plug'] }
 
     " Plug 'wikitopian/hardmode'

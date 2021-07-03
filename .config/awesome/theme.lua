@@ -52,6 +52,9 @@ theme.border_color_marked = xrdb.color10
 theme.tooltip_fg = theme.fg_normal
 theme.tooltip_bg = theme.bg_normal
 
+-- prompt color 
+theme.prompt_fg = "orange"
+
 -- Variables set for theming the menu:
 -- menu_[bg|fg]_[normal|focus]
 -- menu_[border_color|border_width]
