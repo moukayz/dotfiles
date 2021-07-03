@@ -159,7 +159,6 @@ endif
 """"""""""""""""""""""""" colorful
 syntax on
 set noshowmode
-" color onedark
 
 " underline current line
-" hi CursorLine cterm=underline gui=underline
+" hi CursorLine cterm=underline guibg=#878787

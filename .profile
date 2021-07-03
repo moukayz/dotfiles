@@ -12,10 +12,7 @@
 [ -d /usr/local/go/bin ] && PATH="$PATH:/usr/local/go/bin:$HOME/go/bin"
 
 # setup proxy environment variable
-[ -f "$HOME"/enable_proxy ] && . "$HOME"/enable_proxy
-
-# enable cntlm proxy server
-[ -f "$HOME"/proxy-worker ] && "$HOME"/proxy-worker
+# [ -f "$HOME"/enable_proxy ] && . "$HOME"/enable_proxy
 
 # config nvm path
 export NVM_DIR="$HOME/.nvm"
