@@ -4,7 +4,6 @@
 source ~/.profile
 
 if ! tmux has-session -t Legend 2 &>/dev/null; then
-  tmux source-file "$HOME"/.tmux.conf
   tmux new-session -s Legend -n Coding -d
 fi
 
