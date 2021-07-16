@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/legend/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -80,4 +80,3 @@ source $ZSH/oh-my-zsh.sh
 CUSTOM_CONFIG_HOME="${HOME}/.config/moukayz"
 
 [[ -f "$CUSTOM_CONFIG_HOME/custom_alias" ]] && source "$CUSTOM_CONFIG_HOME/custom_alias"
-
