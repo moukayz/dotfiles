@@ -21,7 +21,8 @@ let g:coc_global_extensions = [
             \'coc-diagnostic',
             \'coc-vimlsp',
             \'coc-highlight',
-            \'coc-lua'
+            \'coc-lua',
+            \'coc-html'
             \]
 
 " auto restart coc.nvim when coc-settings.json is changed

@@ -11,6 +11,9 @@
 
 [ -d /usr/local/go/bin ] && PATH="$PATH:/usr/local/go/bin:$HOME/go/bin"
 
+# Load work relative env if exists
+[ -f "$HOME/.env.work" ] && source "$HOME/.env.work"
+
 # setup proxy environment variable
 # [ -f "$HOME"/enable_proxy ] && . "$HOME"/enable_proxy
 
