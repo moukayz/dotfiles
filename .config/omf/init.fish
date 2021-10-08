@@ -46,3 +46,6 @@ end
 function nvm
     bass source $HOME/.nvm/nvm.sh --no-use ';' nvm $argv
 end
+
+# set fzf ctrl-t shortcut for fish
+set -g FZF_CTRL_T_COMMAND "fd --type f --hidden --follow --exclude .git . \$dir | sed '1d; s#^\./##'"

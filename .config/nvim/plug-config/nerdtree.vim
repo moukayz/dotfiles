@@ -1,8 +1,6 @@
 """ NERDTree
-" Nerdtree 
+
 nmap <leader>e :NERDTreeToggle<CR>
-" Tagbar
-nmap <leader>ss :TagbarToggle<CR>
 
 let g:NERDTreeDirArrowExpandable = '+'
 let g:NERDTreeDirArrowCollapsible = '-'

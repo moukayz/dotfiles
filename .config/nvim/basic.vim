@@ -28,7 +28,10 @@ set background=dark
 " map modification for init.vim
 augroup ReloadVim
     autocmd!
-    autocmd! BufWritePost ~/.config/nvim/**.vim,~/.vimrc source % | echom "Reloaded " . $MYVIMRC | redraw | e
+    autocmd BufWritePost ~/.config/nvim/**.vim,~/.vimrc ++nested 
+                \source <afile> 
+                \| echom "Reloaded " . expand('<afile>') 
+                \| edit
 augroup END
 
 """ Enable syntax for CMakeLists.txt file
@@ -43,8 +46,18 @@ augroup SetBashFileType
     autocmd BufRead,BufNewFile,BufEnter .bash.* set filetype=sh
 augroup END
 
+""" enable jump to last position 
+augroup JumpLastPosition
+    autocmd!
+    autocmd BufReadPost *
+                \ if line("'\"") >= 1 && line("'\"") <= line("$")
+                \ |   exe "normal! g`\""
+                \ | endif
+augroup END
+
 """ basic config
 filetype plugin indent on
+syntax on
 set tabstop=4 softtabstop=4 shiftwidth=4 expandtab smarttab autoindent
 set incsearch ignorecase smartcase hlsearch
 set ruler laststatus=2 showcmd
@@ -56,10 +69,34 @@ set relativenumber
 set cursorline
 set showmatch
 set autoread
+set splitbelow
+set splitright
 set exrc             " enable project-based vim config file
 set list
-set listchars=tab:›\ ,trail:⋅,space:⋅
-set colorcolumn=80
+set listchars=tab:›\ ,trail:-,space:⋅
+set colorcolumn=120
+set scrolloff=3
+set showtabline=2
+set pumheight=10
+set pumwidth=10
+if has('nvim')
+    set pumblend=15
+    set jumpoptions=stack
+endif
+
+""" Fold settings
+let g:vimsyn_folding = 'af'
+set foldlevel=5
+set foldmethod=syntax
+set fillchars+=fold:\ 
+set foldtext=MyFoldText()
+function! MyFoldText()
+    let line = getline(v:foldstart)
+    if (line[0] == ' ')
+        let line = '▸' . line[1:]
+    endif
+    return line . ' ...'
+endfunction
 
 """ Install plugins
 " auto install vim-plug if it not installed
@@ -75,12 +112,21 @@ silent! if plug#begin()
     Plug 'christoomey/vim-tmux-navigator'
 
     " colorschemes
+    Plug 'morhetz/gruvbox'
     Plug 'dracula/vim'
     Plug 'junegunn/seoul256.vim'
     Plug 'joshdick/onedark.vim'
+    Plug 'cocopon/iceberg.vim'
+    Plug 'altercation/solarized'
+    " if has('nvim-0.5')
+    "     Plug 'navarasu/onedark.nvim'
+    " else
+    "     Plug 'joshdick/onedark.vim'
+    " endif
     Plug 'vim-airline/vim-airline-themes'
     Plug 'ayu-theme/ayu-vim'
     Plug 'sonph/onehalf', { 'rtp' : 'vim' }
+    Plug 'sainnhe/sonokai'
 
     " snippets
     Plug 'honza/vim-snippets'
@@ -95,25 +141,33 @@ silent! if plug#begin()
     Plug 'justinmk/vim-sneak'      " quick search based on first two chars
 
     " display
+    " Plug 'Yggdroot/indentLine'
     Plug 'machakann/vim-highlightedyank' " highlight yanked text
     Plug 'junegunn/goyo.vim'             " concentrate only on text!
     Plug 'junegunn/limelight.vim'        " highlight current paragraph
     Plug 'junegunn/vim-emoji'            " get emoji from name
     Plug 'ryanoasis/vim-devicons'        " awesome file icons
     Plug 'vim-airline/vim-airline'       " just status line
+    " Plug 'itchyny/lightline.vim'
     Plug 'mhinz/vim-startify'            " vim startup page
     Plug 'preservim/tagbar'              " show code structure by using ctags
+    if has('nvim-0.5')
+        " Plug 'lukas-reineke/indent-blankline.nvim'
+        " Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+    endif
 
     " syntax highlighting
-    Plug 'octol/vim-cpp-enhanced-highlight'
+    " Plug 'octol/vim-cpp-enhanced-highlight'
     Plug 'junegunn/rainbow_parentheses.vim'
+    " Not need anymore because coc-clangd and coc has builtin semantic highlight support
+    " Plug 'jackguo380/vim-lsp-cxx-highlight'
 
     " Plug 'sheerun/vim-polyglot'
     " Plug 'vim-syntastic/syntastic'
     Plug 'plasticboy/vim-markdown'
 
-    Plug 'preservim/nerdtree'
-    Plug 'Xuyuanp/nerdtree-git-plugin'
+    " Plug 'preservim/nerdtree'
+    " Plug 'Xuyuanp/nerdtree-git-plugin'
 
     " git
     Plug 'tpope/vim-fugitive'
@@ -144,20 +198,17 @@ silent! if plug#begin()
     call plug#end()
 
     " load configs for specified plugins
-    source $VIM_PLUGIN_CONFIG_DIR/coc.vim
-    source $VIM_PLUGIN_CONFIG_DIR/misc.vim
-    source $VIM_PLUGIN_CONFIG_DIR/nerdtree.vim
-    source $VIM_PLUGIN_CONFIG_DIR/fugitive.vim
-    source $VIM_PLUGIN_CONFIG_DIR/gitgutter.vim
-    source $VIM_PLUGIN_CONFIG_DIR/fzf.vim
-
-    color onedark
-
+    if !get(g:, 'vimrc_loaded', v:false)
+        source $VIM_PLUGIN_CONFIG_DIR/coc.vim
+        source $VIM_PLUGIN_CONFIG_DIR/misc.vim
+        source $VIM_PLUGIN_CONFIG_DIR/nerdtree.vim
+        source $VIM_PLUGIN_CONFIG_DIR/fugitive.vim
+        source $VIM_PLUGIN_CONFIG_DIR/gitgutter.vim
+        source $VIM_PLUGIN_CONFIG_DIR/fzf.vim
+        source $VIM_PLUGIN_CONFIG_DIR/lightline.vim
+        " source $VIM_PLUGIN_CONFIG_DIR/treesitter.vim
+    endif
 endif
 
-""""""""""""""""""""""""" colorful
-syntax on
-set noshowmode
-
-" underline current line
-" hi CursorLine cterm=underline guibg=#878787
+""" Load after plugin settings
+source $VIM_CONFIG_DIR/color.vim

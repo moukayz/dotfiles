@@ -2,9 +2,11 @@
 set hidden
 set nobackup
 set nowritebackup
-set cmdheight=2
+set cmdheight=1
 set updatetime=300
 set shortmess+=c
+
+let g:coc_default_semantic_highlight_groups = 1
 
 " set coc extensions
 let g:coc_global_extensions = [
@@ -22,7 +24,8 @@ let g:coc_global_extensions = [
             \'coc-vimlsp',
             \'coc-highlight',
             \'coc-lua',
-            \'coc-html'
+            \'coc-html',
+            \'coc-snippets'
             \]
 
 " auto restart coc.nvim when coc-settings.json is changed
@@ -38,12 +41,12 @@ else
     set signcolumn=yes
 endif
 
-" Make <tab> used for trigger completion, completion confirm, snippet expand and jump like VSCode.
+" Make <tab> used for completion confirm, snippet expand and jump like VSCode.
 inoremap <silent><expr> <TAB>
             \ pumvisible() ? coc#_select_confirm() :
-            \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-            \ <SID>check_back_space() ? "\<TAB>" :
-            \ coc#refresh()
+            \ coc#expandableOrJumpable() ? 
+                \ "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" : 
+                \ "\<TAB>"
 
 function! s:check_back_space() abort
     let col = col('.') - 1
@@ -53,12 +56,8 @@ endfunction
 let g:coc_snippet_next = '<tab>'
 let g:coc_snippet_prev = '<S-tab>'
 
-" Use <c-space> to trigger completion.
-if has('nvim')
-    inoremap <silent><expr> <c-space> coc#refresh()
-else
-    inoremap <silent><expr> <c-@> coc#refresh()
-endif
+" Use <c-n> to trigger completion.
+inoremap <silent><expr> <c-n> coc#refresh()
 
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
 " position. Coc only does snippet and additional edit on confirm.
@@ -73,6 +72,19 @@ endif
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
+nmap <silent> [e <Plug>(coc-diagnostic-prev-error)
+nmap <silent> ]e <Plug>(coc-diagnostic-next-error)
+
+" text obj map
+xmap if <Plug>(coc-funcobj-i)
+omap if <Plug>(coc-funcobj-i)
+xmap af <Plug>(coc-funcobj-a)
+omap af <Plug>(coc-funcobj-a)
+
+xmap ic <Plug>(coc-classobj-i)
+omap ic <Plug>(coc-classobj-i)
+xmap ac <Plug>(coc-classobj-a)
+omap ac <Plug>(coc-classobj-a)
 
 " GoTo code navigation
 nmap <silent> gd <Plug>(coc-definition)
@@ -107,13 +119,13 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 xmap <leader>f <Plug>(coc-format-selected)
 nmap <leader>f <Plug>(coc-format-selected)
 nmap <space>f  <Plug>(coc-format)
-command! -nargs=0 FormatBuffer :silent! call CocAction('format')
+command! -nargs=0 FormatBuffer :silent! call CocActionAsync('format')
 
 " Format code buffer on save
-augroup FormatSave
-    autocmd!
-    autocmd BufWritePost * FormatBuffer
-augroup END
+" augroup FormatSave
+"     autocmd!
+"     autocmd BufWritePost * FormatBuffer
+" augroup END
 
 " map coc action
 vmap <leader>a <Plug>(coc-codeaction-selected)
@@ -133,15 +145,17 @@ nnoremap <space>ec :CocCommand explorer --root-strategies sourceBuffer<CR>
 nnoremap <space>eb :CocCommand explorer --preset buffer<CR>
 " open explorer when vim opens a directory
 autocmd StdinReadPre * let s:std_in=1
-augroup OpenExplorerWhenStart
-    autocmd!
-    " disable vim default actions when opening a directory
-    autocmd VimEnter * silent! autocmd! FileExplorer
-    autocmd VimEnter * 
-                \if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in")
-                \| exe 'CocCommand explorer '.argv()[0]
-                \| endif
-augroup END
+
+" augroup OpenExplorerWhenStart
+"     autocmd!
+"     " disable vim default actions when opening a directory
+"     autocmd VimEnter * silent! autocmd! FileExplorer
+"     autocmd VimEnter *
+"                 \if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in")
+"                 \| exe 'CocCommand explorer '.argv()[0]
+"                 \| endif
+" augroup END
+
 " auto close explorer when it's the last window in vim
 augroup QuitExplorerWhenLast
     autocmd!
@@ -155,4 +169,15 @@ nnoremap <space>el :CocList explPresets"
 
 " show function signature in insert mode
 inoremap <expr> <M-h> CocActionAsync('showSignatureHelp')
-nnoremap <space>f :<C-u>call CocActionAsync('showSignatureHelp')<CR>
+nnoremap <space>h :<C-u>call CocActionAsync('showSignatureHelp')<CR>
+nnoremap <space>? :<C-u>call CocActionAsync('diagnosticInfo')<CR>
+
+" Maps for CocList
+nnoremap <space>tt :<C-u>CocList --interactive --auto-preview symbols<CR>
+nnoremap <space>tc :<C-u>CocList outline<CR>
+nnoremap <space>p  :<C-u>CocList commands<CR>
+nnoremap <space>x  :<C-u>CocList extensions<CR>
+
+" Switch source and header use clangd
+nnoremap <space>o :<C-u>CocCommand clangd.switchSourceHeader<CR>
+nnoremap <space>O :<C-u>CocCommand clangd.switchSourceHeader vsplit<CR>

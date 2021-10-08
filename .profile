@@ -31,4 +31,8 @@ export FZF_DEFAULT_OPTS='--color=fg:#cbccc6,bg:#1f2430,hl:#707a8c --color=fg+:#7
 export FZF_DEFAULT_OPTS="${FZF_DEFAULT_OPTS} --border --height 40% --reverse --prompt=\"=> \""
 
 # setup default shell editor
-export EDITOR="vim"
+if command -v nvim &> /dev/null; then
+    export EDITOR="nvim" 
+else
+    export EDITOR="vim"
+fi
