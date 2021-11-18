@@ -158,6 +158,7 @@ silent! if plug#begin()
 
     " syntax highlighting
     " Plug 'octol/vim-cpp-enhanced-highlight'
+    Plug 'cespare/vim-toml'
     Plug 'junegunn/rainbow_parentheses.vim'
     " Not need anymore because coc-clangd and coc has builtin semantic highlight support
     " Plug 'jackguo380/vim-lsp-cxx-highlight'

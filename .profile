@@ -11,6 +11,9 @@
 
 [ -d /usr/local/go/bin ] && PATH="$PATH:/usr/local/go/bin:$HOME/go/bin"
 
+# Rust path
+[ -d "$HOME/.cargo" ] && source "$HOME/.cargo/env"
+
 # Load work relative env if exists
 [ -f "$HOME/.env.work" ] && source "$HOME/.env.work"
 

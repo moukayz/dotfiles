@@ -4,8 +4,10 @@
     :show-dictionary          true
     :show-alternatives        false
     :show-prompt-message      false
+    :show-original-phonetics  true
     :view                     false
     :hl                       "en"
     :tl                       "zh"
     :theme                    "random"
+    :ip-version               4
 }
