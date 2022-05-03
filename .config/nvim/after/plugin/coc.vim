@@ -1,5 +1,5 @@
 if !exists(":CocEnable")
-    " echo "coc.vim disabled, not souring coc configs!!"
+    echo "coc.vim disabled, not souring coc configs!!\n\n"
     finish
 endif
 

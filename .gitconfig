@@ -54,3 +54,7 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+[color]
+	ui = auto
+[cinnabar]
+	helper = /var/folders/11/svgw_3px1m77p44r6yf36dt00000gn/T/tmpxn2p5zqk/git-cinnabar-master/git-cinnabar-helper

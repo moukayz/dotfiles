@@ -3,7 +3,6 @@
         "--all-scopes-completion",
         "--background-index",
         "--cross-file-rename",
-        "--recovery-ast",
         "--suggest-missing-includes"
     ],
     "coc.preferences.enableMarkdown": true,
@@ -16,23 +15,33 @@
     "explorer.keyMappings.global": {
         "<space>": "toggleSelection"
     },
+    "coc.preferences.formatOnSaveFiletypes": ["javascript", "typescript"],
+    "prettier.eslintIntegration": false,
+    "tree.closedIcon": "",
+    "tree.openedIcon": "",
+    "javascript.format.semicolons": "insert",
     "http.proxyStrictSSL": false,
     "sh.enable": true,
     "cSpell.userWords": [
-        "PCONNECTIONSTATUS",
-        "RXJSON",
-        "Ufrag",
-        "cmake",
-        "gruvbox",
-        "sdes",
-        "sonokai",
-        "srtp",
-        "test"
+      "Jsep",
+      "Neovim",
+      "PCONNECTIONSTATUS",
+      "RXJSON",
+      "Ufrag",
+      "Uncapitalize",
+      "allcore",
+      "cmake",
+      "gruvbox",
+      "nvim",
+      "sdes",
+      "sonokai",
+      "srtp",
+      "test"
     ],
     "codeLens.enable": true,
-    "diagnostic.infoSign": "︁",
-    "diagnostic.warningSign": "⚠︁",
-    "diagnostic.errorSign": "︁",
+    "diagnostic.infoSign": "",
+    "diagnostic.warningSign": "",
+    "diagnostic.errorSign": "",
     "diagnostic.enableMessage": "jump",
     "diagnostic.virtualText": true,
     "diagnostic.virtualTextCurrentLineOnly": true,
@@ -98,13 +107,14 @@
             ]
         }
     },
+    "semanticTokens.filetypes": ["*"],
     "coc.preferences.currentFunctionSymbolAutoUpdate": true,
     "signature.floatConfig": {
         "borderhighlight": "Constant",
         "highlight": "CocHintFloat",
         "border": true
     },
-    "signature.triggerSignatureWait": 1000,
+    "signature.triggerSignatureWait": 500,
     "hover.floatConfig": {
         "borderhighlight": "Constant",
         "highlight": "CocHintFloat",
@@ -147,5 +157,6 @@
         "snippet": "\ue60b",
         "typeParameter": "\uf728",
         "default": "\uf29c"
-    }
+    },
+    "clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/13.0.0/clangd_13.0.0/bin/clangd"
 }

@@ -1,3 +1,3 @@
-source ~/.gef-00e05d3fe243a12ee0856048b4e3f35a843fdccc.py
-
+source /Users/bytedance/.gdbinit-gef.py
+set startup-with-shell off
 set print asm-demangle on

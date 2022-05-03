@@ -3,9 +3,10 @@
 # load general environment variable
 source ~/.profile
 
-if ! tmux has-session -t Legend 2 &>/dev/null; then
+if ! tmux has-session -t Legend &>/dev/null; then
   tmux new-session -s Legend -n Coding -d
   tmux new-window -n HTOP -d htop
+  tmux new-window -n Ranger -d ranger
 fi
 
 tmux attach -t Legend
