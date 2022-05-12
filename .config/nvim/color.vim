@@ -50,3 +50,4 @@ if get(g:, 'colors_name') == "onedark"
 endif
 
 hi! link CocSemClass Structure
+hi! link GitLensText Comment

@@ -119,7 +119,7 @@ augroup END
 " Symbol renaming
 nmap <leader>rn <Plug>(coc-rename)
 
-set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+" set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 " Formatting 
 xmap <leader>f <Plug>(coc-format-selected)
@@ -152,22 +152,23 @@ nnoremap <space>eb :CocCommand explorer --preset buffer<CR>
 " open explorer when vim opens a directory
 autocmd StdinReadPre * let s:std_in=1
 
-" augroup OpenExplorerWhenStart
-"     autocmd!
-"     " disable vim default actions when opening a directory
-"     autocmd VimEnter * silent! autocmd! FileExplorer
-"     autocmd VimEnter *
-"                 \if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in")
-"                 \| exe 'CocCommand explorer '.argv()[0]
-"                 \| endif
-" augroup END
+augroup OpenExplorerWhenStart
+    autocmd!
+    " disable vim default actions when opening a directory
+    autocmd VimEnter * silent! autocmd! FileExplorer
+    autocmd VimEnter * 
+                \if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in")
+                \| exe 'CocCommand explorer '.argv()[0] | wincmd p | enew | wincmd p
+                \| exe 'cd '.argv()[0]
+                \| endif
+augroup END
 
 " auto close explorer when it's the last window in vim
 augroup QuitExplorerWhenLast
     autocmd!
-    autocmd BufEnter \[coc-explorer\]-* 
-                \if tabpagenr("$") == 1 && winnr("$") == 1 && len(getbufinfo()) <= 2
-                \| q | endif
+    autocmd BufEnter \[coc-explorer\]-*
+                \ if winnr('$') == 1
+                \ | q | endif
 augroup END
 
 " List all presets

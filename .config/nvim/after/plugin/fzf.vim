@@ -3,6 +3,8 @@ let g:fzf_colors = {
             \}
 let g:fzf_layout = { 'window' : { 'width' : 0.7, 'height' : 0.8 } }
 let g:fzf_tags_command = 'ctags -R --fields=Kts'
+let g:fzf_ignore_dirs = ['.git', '.cache/clangd/index', 'build']
+
 " Overwrite FZF_DEFAULT_OPTS environment variable in vim
 let $FZF_DEFAULT_OPTS="--preview-window 'up:60%'
             \ --bind ctrl-b:preview-page-up,ctrl-f:preview-page-down,
@@ -64,19 +66,14 @@ endfunction
 " search and execute commands quickly
 nnoremap <silent> <M-p> :<C-u>Commands<CR>
 
-function! s:IsInGitRepo()
-    call system('git rev-list -1 HEAD >/dev/null 2>&1')
-    return v:shell_error == 0
-endfunction
-
 function! s:FzfWithMRU(path)
-    let l:mru_fzf_command = 'fd --no-ignore --type f --hidden --follow --exclude .git'
+    let l:mru_fzf_command = 'fd --no-ignore --type f --hidden --follow -E ' . join(g:fzf_ignore_dirs, " -E ")
     " let l:mru_fzf_command = 'fd --type f --hidden --follow --exclude .git -X ls -t'
     let l:saved_command = $FZF_DEFAULT_COMMAND
 
     " if in git repo, change fzf command to sort file with mtime(mru)
     " if not in git repo, just use the default fzf command 
-    if <SID>IsInGitRepo()
+    if utils#IsInGitRepo()
         let $FZF_DEFAULT_COMMAND = l:mru_fzf_command
     endif
 

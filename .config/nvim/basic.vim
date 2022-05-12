@@ -1,5 +1,6 @@
 """ set fzf vim auto completion
 set rtp+=/home/linuxbrew/.linuxbrew/opt/fzf
+set rtp+=$VIM_CONFIG_DIR/my-plugins/lua-test
 
 """ set custom leader
 let mapleader="\\"
@@ -86,6 +87,3 @@ function! MyFoldText()
     endif
     return line . ' ...'
 endfunction
-
-source $VIM_CONFIG_DIR/plugins.vim
-source $VIM_CONFIG_DIR/color.vim

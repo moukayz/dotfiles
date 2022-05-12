@@ -11,6 +11,10 @@ silent! if plug#begin()
     " My own plugins
     " Plug 'moukayz/coc-yztest', {'do': 'yarn install --frozen-lockfile && yarn build'}
 
+    " lua relative
+    Plug 'milisims/nvim-luaref'
+    Plug 'nvim-lua/plenary.nvim'
+
     Plug 'junegunn/vim-plug'
     Plug 'christoomey/vim-tmux-navigator'
 
@@ -27,7 +31,6 @@ silent! if plug#begin()
     " else
     "     Plug 'joshdick/onedark.vim'
     " endif
-    Plug 'vim-airline/vim-airline-themes'
     Plug 'ayu-theme/ayu-vim'
     " Plug 'sonph/onehalf', { 'rtp' : 'vim' }
     Plug 'sainnhe/sonokai'
@@ -47,17 +50,20 @@ silent! if plug#begin()
 
     " display
     " Plug 'Yggdroot/indentLine'
+    Plug 'mhinz/vim-startify'            " vim startup page
+    Plug 'preservim/tagbar'              " show code structure by using ctags
     Plug 'mtdl9/vim-log-highlighting'
     Plug 'machakann/vim-highlightedyank' " highlight yanked text
     Plug 'junegunn/goyo.vim'             " concentrate only on text!
     Plug 'junegunn/limelight.vim'        " highlight current paragraph
     Plug 'junegunn/vim-emoji'            " get emoji from name
     Plug 'ryanoasis/vim-devicons'        " awesome file icons
-    Plug 'vim-airline/vim-airline'       " just status line
+    " Plug 'vim-airline/vim-airline-themes'
+    " Plug 'vim-airline/vim-airline'       " just status line
     " Plug 'itchyny/lightline.vim'
-    Plug 'mhinz/vim-startify'            " vim startup page
-    Plug 'preservim/tagbar'              " show code structure by using ctags
     if has('nvim-0.5')
+        Plug 'nvim-lualine/lualine.nvim'
+        Plug 'kyazdani42/nvim-web-devicons'
         " Plug 'lukas-reineke/indent-blankline.nvim'
         " Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
     endif
@@ -80,7 +86,8 @@ silent! if plug#begin()
     " git
     Plug 'tpope/vim-fugitive'
     Plug 'junegunn/gv.vim'
-    Plug 'airblade/vim-gitgutter'
+    " Plug 'airblade/vim-gitgutter'
+    Plug 'lewis6991/gitsigns.nvim'
 
     " misc
     Plug 'easymotion/vim-easymotion'
@@ -101,16 +108,10 @@ silent! if plug#begin()
     " Plug 'wikitopian/hardmode'
 
     call plug#end()
-
-    " load configs for specified plugins
-    " if !get(g:, 'vimrc_loaded', v:false)
-    "     source $VIM_PLUGIN_CONFIG_DIR/coc.vim
-    "     source $VIM_PLUGIN_CONFIG_DIR/misc.vim
-    "     source $VIM_PLUGIN_CONFIG_DIR/nerdtree.vim
-    "     source $VIM_PLUGIN_CONFIG_DIR/fugitive.vim
-    "     source $VIM_PLUGIN_CONFIG_DIR/gitgutter.vim
-    "     source $VIM_PLUGIN_CONFIG_DIR/fzf.vim
-    "     source $VIM_PLUGIN_CONFIG_DIR/lightline.vim
-    "     " source $VIM_PLUGIN_CONFIG_DIR/treesitter.vim
-    " endif
 endif
+
+lua << EOF
+require('gitlens').setup()
+require('config.lualine')
+require('config.gitsigns')
+EOF

@@ -1,4 +1,7 @@
 """ NERDTree
+if !exists(":NERDTreeToggle")
+    finish
+endif
 
 nmap <leader>e :NERDTreeToggle<CR>
 
