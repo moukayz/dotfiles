@@ -6,7 +6,5 @@
 
 config_version: 2
 settings:
-  hints.auto_follow:
-    global: always
   scrolling.smooth:
     global: true

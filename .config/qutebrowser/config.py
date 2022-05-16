@@ -11,7 +11,7 @@
 #   qute://help/settings.html
 
 # Uncomment this to still load settings configured via autoconfig.yml
-# config.load_autoconfig()
+config.load_autoconfig(False)
 
 # Which cookies to accept. With QtWebEngine, this setting also controls
 # other features with tracking capabilities similar to those of cookies;
@@ -157,7 +157,7 @@ config.set('content.javascript.enabled', True, 'qute://*/*')
 # Valid values:
 #   - system: Use the system wide proxy.
 #   - none: Don't use any proxy
-c.content.proxy = 'http://127.0.0.1:33221'
+#c.content.proxy = 'http://127.0.0.1:33221'
 
 # CSS border value for hints.
 # Type: String
@@ -207,7 +207,7 @@ c.window.hide_decoration = True
 
 # Default zoom level.
 # Type: Perc
-c.zoom.default = '150%'
+c.zoom.default = '200%'
 
 # Text color of the completion widget. May be a single color to use for
 # all columns or a list of three colors, one for each column.
@@ -530,15 +530,15 @@ c.fonts.default_family = 'SauceCodePro Nerd Font'
 # either a float value with a "pt" suffix, or an integer value with a
 # "px" suffix.
 # Type: String
-c.fonts.default_size = '12pt'
+#c.fonts.default_size = '12pt'
 
 # Default font size (in pixels) for regular text.
 # Type: Int
-c.fonts.web.size.default = 20
+#c.fonts.web.size.default = 20
 
 # Default font size (in pixels) for fixed-pitch text.
 # Type: Int
-c.fonts.web.size.default_fixed = 20
+#c.fonts.web.size.default_fixed = 20
 
 # Hard minimum font size (in pixels).
 # Type: Int
@@ -547,3 +547,5 @@ c.fonts.web.size.minimum = 0
 # Bindings for normal mode
 config.bind('J', 'tab-prev')
 config.bind('K', 'tab-next')
+
+c.scrolling.smooth = True

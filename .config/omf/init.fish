@@ -49,3 +49,10 @@ end
 
 # set fzf ctrl-t shortcut for fish
 set -g FZF_CTRL_T_COMMAND "fd --type f --hidden --follow --exclude .git . \$dir | sed '1d; s#^\./##'"
+
+# Start X at login
+if status is-login
+    if test -z "$DISPLAY" -a "$XDG_VTNR" = 1
+        exec startx --keeptty
+    end
+end

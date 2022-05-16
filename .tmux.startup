@@ -3,10 +3,18 @@
 # load general environment variable
 source ~/.profile
 
-if ! tmux has-session -t Legend &>/dev/null; then
-  tmux new-session -s Legend -n Coding -d
+MY_SESSION=Legend
+
+if ! tmux has-session -t $MY_SESSION &>/dev/null; then
+  echo "Default tmux session not exist, will create one!"
+  tmux new-session -s $MY_SESSION -n Coding -d
   tmux new-window -n HTOP -d htop
   tmux new-window -n Ranger -d ranger
 fi
 
-tmux attach -t Legend
+# check if another client has already attached the session
+if ! [[ $( tmux list-clients -t $MY_SESSION ) ]]; then
+  tmux attach -t Legend
+else
+  $SHELL
+fi
