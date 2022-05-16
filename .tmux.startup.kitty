@@ -1,0 +1,1 @@
+launch --copy-env zsh --login -c "~/.tmux.startup"
