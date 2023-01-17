@@ -82,3 +82,10 @@ nnoremap <M-o> <Esc>:<C-u>call SwitchHeadSrc(expand('%'))<CR><Esc>
 
 " basic abbr
 iabbr adn and
+
+" commandline mode maps
+cnoremap <C-f> <Right>
+cnoremap <C-b> <Left>
+cnoremap <C-a> <Home>
+cnoremap <C-e> <End>
+cnoremap <M-f> <S-Right>

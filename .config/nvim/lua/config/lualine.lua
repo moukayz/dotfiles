@@ -60,7 +60,7 @@ require('lualine').setup {
         { 'filename', color = update_filename_color}
     },
     lualine_c = {'diff', 'diagnostics' },
-    lualine_x = { 'g:coc_status' },
+    lualine_x = { 'coc#status' },
     lualine_y = { 'filetype', 'progress' },
     lualine_z = {
       { 'location', separator = { right = '' }, left_padding = 2 },
@@ -75,7 +75,7 @@ require('lualine').setup {
     lualine_z = { 'location' },
   },
   tabline = {
-    lualine_a = {{ 'tabs', mode = 2}},
+    lualine_a = {{ 'tabs', mode = 2, max_length = vim.o.columns / 2}},
     lualine_b = {},
     lualine_c = {},
     lualine_x = {},

@@ -27,6 +27,7 @@ function M.setup()
   opt.clipboard:append('unnamedplus')
   o.shell = '/bin/bash'
   o.guifont = "mononoki Nerd Font Mono:h14"
+  o.mouse = ""
   o.termguicolors = true
   o.background = 'dark'
   o.tabstop = 4
@@ -63,6 +64,7 @@ function M.setup()
   o.pumwidth = 10
   o.pumblend = 15
   o.jumpoptions = 'stack'
+  o.autowrite = true
 
   gv.vimsyn_folding = 'af'
   o.foldlevel = 5
@@ -91,5 +93,6 @@ function M.setup()
     callback = reloadVimCallback
   })
 end
+
 
 return M

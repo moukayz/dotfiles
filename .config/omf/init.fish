@@ -21,6 +21,7 @@ alias unset "set -e"
 
 
 source $CUSTOM_CONFIG_DIR/custom_alias
+source $CUSTOM_CONFIG_DIR/work_alias
 
 # enable vi-mode
 function fish_user_key_bindings

@@ -2,11 +2,15 @@
     "colors.filetypes": [
         "*"
     ],
+    "[cpp][c]" : {
+        "inlayHint.enable": false
+    },
     "Lua.format.defaultConfig": {
         "indent_style": "space",
         "indent_size": "2"
     },
     "Lua.format.enable": true,
+    "clangd.disableProgressNotifications": true,
     "clangd.arguments": [
         "--all-scopes-completion",
         "--background-index",
@@ -14,6 +18,7 @@
         "--suggest-missing-includes"
     ],
     "coc.preferences.enableMarkdown": true,
+    "suggest.defaultSortMethod": "length",
     "snippets.textmateSnippetsRoots": [
         "/Users/bytedance/Library/Application Support/Code - Insiders/User/snippets"
     ],
@@ -34,25 +39,29 @@
     "http.proxyStrictSSL": false,
     "sh.enable": true,
     "cSpell.userWords": [
-        "Jsep",
-        "Neovim",
-        "PCONNECTIONSTATUS",
-        "RXJSON",
-        "Ufrag",
-        "Uncapitalize",
-        "allcore",
-        "cmake",
-        "gruvbox",
-        "nvim",
-        "sdes",
-        "sonokai",
-        "srtp",
-        "test"
+      "Jsep",
+      "Neovim",
+      "PCONNECTIONSTATUS",
+      "RXJSON",
+      "Ufrag",
+      "Uncapitalize",
+      "Vpaas",
+      "absl",
+      "allcore",
+      "cmake",
+      "gruvbox",
+      "nvim",
+      "sdes",
+      "sonokai",
+      "srflx",
+      "srtp",
+      "test"
     ],
     "codeLens.enable": true,
     "diagnostic.infoSign": "",
     "diagnostic.warningSign": "",
     "diagnostic.errorSign": "",
+    "diagnostic.hintSign": "",
     "diagnostic.enableMessage": "jump",
     "diagnostic.virtualText": true,
     "diagnostic.virtualTextCurrentLineOnly": true,
@@ -171,5 +180,6 @@
         "typeParameter": "\uf728",
         "default": "\uf29c"
     },
-    "clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/13.0.0/clangd_13.0.0/bin/clangd"
+    "clangd.path": "~/clangd-release/clangd_14.0.3/bin/clangd",
+    "Lua.telemetry.enable": false
 }

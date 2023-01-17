@@ -61,8 +61,13 @@ endfunction
 let g:coc_snippet_next = '<tab>'
 let g:coc_snippet_prev = '<S-tab>'
 
+" Use <C-n>, <C-p>, <up> and <down> to navigate completion list: >
+inoremap <silent><expr> <C-n> coc#pum#visible() ? coc#pum#next(1) : coc#refresh()
+inoremap <silent><expr> <C-p> coc#pum#visible() ? coc#pum#prev(1) : "\<C-p>"
+
 " Use <c-n> to trigger completion.
-inoremap <silent><expr> <c-n> coc#refresh()
+" inoremap <silent><expr> <c-n> coc#refresh()
+
 
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
 " position. Coc only does snippet and additional edit on confirm.
@@ -110,10 +115,16 @@ function! s:show_documentation()
     endif
 endfunction
 
+function! s:show_highlight()
+    if &ft != 'log'
+        call CocActionAsync('highlight')
+    endif
+endfunction
+
 " Highlight the symbol and its references when holding the cursor.
 augroup HoldHighlight
     autocmd!
-    autocmd CursorHold *  call CocActionAsync('highlight')
+    autocmd CursorHold * silent call s:show_highlight()
 augroup END
 
 " Symbol renaming
@@ -184,6 +195,9 @@ nnoremap <space>tt :<C-u>CocList --interactive --auto-preview symbols<CR>
 nnoremap <space>tc :<C-u>CocList outline<CR>
 nnoremap <space>p  :<C-u>CocList commands<CR>
 nnoremap <space>x  :<C-u>CocList extensions<CR>
+nnoremap <space>s  :<C-u>CocList grep<CR>
+nnoremap <space>r  :<C-u>CocList mru<CR>
+nnoremap <space>f  :<C-u>CocList files<CR>
 
 " Switch source and header use clangd
 nnoremap <space>o :<C-u>CocCommand clangd.switchSourceHeader<CR>

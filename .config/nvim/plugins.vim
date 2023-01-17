@@ -65,7 +65,7 @@ silent! if plug#begin()
         Plug 'nvim-lualine/lualine.nvim'
         Plug 'kyazdani42/nvim-web-devicons'
         " Plug 'lukas-reineke/indent-blankline.nvim'
-        " Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+        Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
     endif
 
     " syntax highlighting
@@ -111,7 +111,7 @@ silent! if plug#begin()
 endif
 
 lua << EOF
-require('gitlens').setup()
+---require('gitlens').setup()
 require('config.lualine')
 require('config.gitsigns')
 EOF

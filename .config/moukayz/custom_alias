@@ -11,6 +11,7 @@ alias gau="git add -u"
 alias gprb="git pull --rebase"
 alias gp="git push"
 alias gd="git diff"
+alias gsc="git diff --name-only --diff-filter=U --relative"
 
 # set yadm alias
 alias ys="yadm status"

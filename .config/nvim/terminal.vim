@@ -154,6 +154,7 @@ augroup SetupEmbeddedTerminal
                 \| setlocal nonumber 
                 \| setlocal norelativenumber
                 \| setlocal noruler
+                \| setlocal bufhidden=hide
 
     " adjust terminal window's size, position and mode
     autocmd BufEnter * call s:setup_terminal_win()

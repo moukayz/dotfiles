@@ -3,7 +3,7 @@ let g:fzf_colors = {
             \}
 let g:fzf_layout = { 'window' : { 'width' : 0.7, 'height' : 0.8 } }
 let g:fzf_tags_command = 'ctags -R --fields=Kts'
-let g:fzf_ignore_dirs = ['.git', '.cache/clangd/index', 'build']
+let g:fzf_ignore_dirs = get(g:, 'fzf_ignore_dirs', ['.git', '.cache/clangd/index', 'build'])
 
 " Overwrite FZF_DEFAULT_OPTS environment variable in vim
 let $FZF_DEFAULT_OPTS="--preview-window 'up:60%'
@@ -223,8 +223,8 @@ function! s:align_lists(lists)
 endfunction
 
 """ Override Coc's location list with fzf
-augroup CocFzfLocation
-  autocmd!
-  let g:coc_enable_locationlist = 0
-  autocmd User CocLocationsChange nested call FzfCocLocation()
-augroup END
+" augroup CocFzfLocation
+"   autocmd!
+"   let g:coc_enable_locationlist = 0
+"   autocmd User CocLocationsChange nested call FzfCocLocation()
+" augroup END
