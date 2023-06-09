@@ -8,7 +8,7 @@ MY_SESSION=Legend
 if ! tmux has-session -t $MY_SESSION &>/dev/null; then
   echo "Default tmux session not exist, will create one!"
   tmux new-session -s $MY_SESSION -n Coding -d
-  tmux new-window -n HTOP -d htop
+  tmux new-window -n Btop -d btop
   tmux new-window -n Ranger -d ranger
 fi
 

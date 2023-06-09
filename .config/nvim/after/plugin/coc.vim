@@ -150,7 +150,7 @@ nmap <leader>a <Plug>(coc-codeaction-selected)
 nmap <space>a  <Plug>(coc-codeaction-cursor)
 
 """ map for coc-explorer
-nnoremap <space>ee :CocCommand explorer<CR>
+nnoremap <space>ee :CocCommand explorer --preset simplify<CR>
 " Use preset argument to open it
 " `<s>ed` to open nvim config dir tree
 nnoremap <space>ed :CocCommand explorer --preset .vim<CR> 

@@ -1,0 +1,45 @@
+{
+    "$schema": "https://lnav.org/schemas/format-v1.schema.json",
+    "rtclog": {
+        "description": "Format file generated from regex101 entry -- https://regex101.com/r/4glOCP/3",
+        "regex": {
+            "std": {
+                "pattern": "(?P<timestamp>^.*?)(?P<module>\\[.*?\\])(?P<level>\\[.*?\\])(?P<thread>\\[.*?\\])\\((?P<filename>.*?)(:\\d+)\\)(?P<body>.*$)"
+            }
+        },
+        "level-field": "level",
+        "opid-field":"thread",
+        "module-field": "module",
+        "level": {
+            "error":"[E]",
+            "warning":"[W]"
+        },
+        "value": {
+            "filename": {
+                "kind": "string",
+                "identifier": true
+            },
+            "level": {
+                "kind": "string",
+                "identifier": true
+            },
+            "module": {
+                "kind": "string",
+                "identifier": true
+            },
+            "thread": {
+                "kind": "string",
+                "identifier": true
+            },
+            "timestamp": {
+                "kind": "string",
+                "identifier": true
+            }
+        },
+        "sample": [
+            {
+                "line": "2022-08-25 17:36:34.484000[Conn][I][31239](p2p_session.cc:2221): [P2PSession(f7282da4f71c1cbf7244c045b0c4eedcfd42aaee67e688b45614023f47f9f0b1:f7282da4f71c1cbf7244c045b0c4eedcfd42aaee67e688b4561402│"
+            }
+        ]
+    }
+}

@@ -83,3 +83,4 @@ CUSTOM_CONFIG_HOME="${HOME}/.config/moukayz"
 
 # Enable vi-mode
 bindkey -v
+export PATH=/Users/bytedance/.local/bin:$PATH

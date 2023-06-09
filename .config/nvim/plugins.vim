@@ -11,6 +11,9 @@ silent! if plug#begin()
     " My own plugins
     " Plug 'moukayz/coc-yztest', {'do': 'yarn install --frozen-lockfile && yarn build'}
 
+    " Plug 'nvim-tree/nvim-web-devicons' " optional
+    " Plug 'nvim-tree/nvim-tree.lua'
+
     " lua relative
     Plug 'milisims/nvim-luaref'
     Plug 'nvim-lua/plenary.nvim'
@@ -51,7 +54,7 @@ silent! if plug#begin()
     " display
     " Plug 'Yggdroot/indentLine'
     Plug 'mhinz/vim-startify'            " vim startup page
-    Plug 'preservim/tagbar'              " show code structure by using ctags
+    " Plug 'preservim/tagbar'              " show code structure by using ctags
     Plug 'mtdl9/vim-log-highlighting'
     Plug 'machakann/vim-highlightedyank' " highlight yanked text
     Plug 'junegunn/goyo.vim'             " concentrate only on text!

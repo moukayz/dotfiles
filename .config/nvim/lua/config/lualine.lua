@@ -59,8 +59,12 @@ require('lualine').setup {
     lualine_b = {
         { 'filename', color = update_filename_color}
     },
-    lualine_c = {'diff', 'diagnostics' },
+    lualine_c = { 'diff', { 'diagnostics',
+      symbols = { error = '', warn = '', info = '', hint = '' }
+    } },
     lualine_x = { 'coc#status' },
+
+
     lualine_y = { 'filetype', 'progress' },
     lualine_z = {
       { 'location', separator = { right = '' }, left_padding = 2 },

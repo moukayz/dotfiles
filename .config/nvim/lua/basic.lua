@@ -1,4 +1,5 @@
 local o = vim.o
+local g = vim.g
 local opt = vim.opt
 local gv = vim.g
 local api = vim.api
@@ -22,6 +23,10 @@ function M.setup()
   gv.mapleader = '\\'
   gv.python3_host_prog = '/usr/bin/python3'
   gv.loaded_python_provider = 0
+
+  -- disable netrw at the very start of your init.lua
+  g.loaded_netrw = 1
+  g.loaded_netrwPlugin = 1
 
   opt.rtp:append('/home/linuxbrew/.linuxbrew/opt/fzf')
   opt.clipboard:append('unnamedplus')
@@ -92,6 +97,7 @@ function M.setup()
     nested = true,
     callback = reloadVimCallback
   })
+
 end
 
 

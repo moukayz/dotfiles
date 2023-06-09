@@ -6,3 +6,4 @@ readonly CUSTOM_CONFIG_HOME="${HOME}/.config/moukayz"
 source "$HOME"/.bash.prompt
 
 [[ -f "$CUSTOM_CONFIG_HOME/custom_alias" ]] && source "$CUSTOM_CONFIG_HOME/custom_alias"
+export PATH=/Users/bytedance/.local/bin:$PATH
