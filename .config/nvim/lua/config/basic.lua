@@ -5,7 +5,6 @@ local gv = vim.g
 local api = vim.api
 
 local M = {}
-
 function FoldText()
   local line = vim.fn.getline(vim.v.foldstart)
   if line:sub(1, 1) == ' ' then
@@ -15,7 +14,19 @@ function FoldText()
 end
 
 local function reloadVimCallback(params)
-  vim.cmd('source ' .. params.file)
+  local fname, ft = params.file:match('([^/]*)%.(.*)$')
+  if (ft == 'lua') then
+    local module_name = gv.custom_dir .. '.' .. fname
+    -- require('plenary.reload').reload_module(module_name)
+    dofile(params.file)
+    -- local m = require(module_name)
+    -- if m ~= nil and m.setup then
+    --   vim.cmd('echom "' .. module_name .. ' module setup!"')
+    --   m.setup()
+    -- end
+  elseif (ft == 'vim') then
+    vim.cmd('source ' .. params.file)
+  end
   vim.cmd('echom "' .. params.file .. ' reloaded!"')
 end
 
@@ -23,13 +34,15 @@ function M.setup()
   gv.mapleader = '\\'
   gv.python3_host_prog = '/usr/bin/python3'
   gv.loaded_python_provider = 0
+  gv.custom_dir = 'config'
 
-  -- disable netrw at the very start of your init.lua
-  g.loaded_netrw = 1
-  g.loaded_netrwPlugin = 1
+  -- -- disable netrw at the very start of your init.lua
+  -- g.loaded_netrw = 1
+  -- g.loaded_netrwPlugin = 1
 
   opt.rtp:append('/home/linuxbrew/.linuxbrew/opt/fzf')
   opt.clipboard:append('unnamedplus')
+  opt.diffopt:append {'indent-heuristic', 'linematch:60'}
   o.shell = '/bin/bash'
   o.guifont = "mononoki Nerd Font Mono:h14"
   o.mouse = ""
@@ -93,12 +106,13 @@ function M.setup()
   api.nvim_create_augroup("ReloadVim", {})
   api.nvim_create_autocmd("BufWritePost", {
     group = "ReloadVim",
-    pattern = { "~/.config/nvim/**.vim", "~/.vimrc" },
+    -- pattern = { vim.fn.expand("~") .. "/.config/nvim/**.vim", "~/.vimrc" },
+    pattern = { vim.env.VIM_CONFIG_DIR .. "/**.vim", vim.env.VIM_CONFIG_DIR .. "/**.lua", "~/.vimrc" },
     nested = true,
     callback = reloadVimCallback
   })
-
+    vim.notify('Reload basic lua', vim.log.levels.INFO)
 end
 
-
 return M
+-- return M

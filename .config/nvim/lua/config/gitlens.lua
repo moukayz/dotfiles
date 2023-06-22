@@ -3,7 +3,7 @@ local bo = vim.bo
 
 local M = {}
 local bt_blacklist = { 'help', 'terminal' }
-local utils = require('utils')
+local utils = require('config.utils')
 local text
 local lens_displayed = false
 local gitlens_ns = api.nvim_create_namespace("gitlens")

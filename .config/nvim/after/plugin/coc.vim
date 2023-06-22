@@ -41,17 +41,10 @@ augroup END
 
 
 if has("patch-8.1.1564")
-    set signcolumn=number
+    set signcolumn=auto
 else
     set signcolumn=yes
 endif
-
-" Make <tab> used for completion confirm, snippet expand and jump like VSCode.
-inoremap <silent><expr> <TAB>
-            \ pumvisible() ? coc#_select_confirm() :
-            \ coc#expandableOrJumpable() ? 
-                \ "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" : 
-                \ "\<TAB>"
 
 function! s:check_back_space() abort
     let col = col('.') - 1
@@ -61,13 +54,70 @@ endfunction
 let g:coc_snippet_next = '<tab>'
 let g:coc_snippet_prev = '<S-tab>'
 
-" Use <C-n>, <C-p>, <up> and <down> to navigate completion list: >
-inoremap <silent><expr> <C-n> coc#pum#visible() ? coc#pum#next(1) : coc#refresh()
-inoremap <silent><expr> <C-p> coc#pum#visible() ? coc#pum#prev(1) : "\<C-p>"
-
 " Use <c-n> to trigger completion.
 " inoremap <silent><expr> <c-n> coc#refresh()
 
+" Make <tab> used for completion confirm, snippet expand and jump like VSCode.
+inoremap <silent><expr> <TAB>
+            \ pumvisible() ? coc#_select_confirm() :
+            \ coc#expandableOrJumpable() ? 
+                \ "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" : 
+                \ "\<TAB>"
+
+function! s:show_documentation()
+    if (index(['vim','help'], &filetype) >= 0)
+        execute 'h '.expand('<cword>')
+    else
+        call CocActionAsync('doHover')
+    endif
+endfunction
+
+function! s:show_highlight()
+    if &ft != 'log'
+        call CocActionAsync('highlight')
+    endif
+endfunction
+
+" Highlight the symbol and its references when holding the cursor.
+augroup HoldHighlight
+    autocmd!
+    autocmd CursorHold * silent call s:show_highlight()
+augroup END
+
+" Symbol renaming
+nmap <leader>rn <Plug>(coc-rename)
+
+" set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+
+" Format code buffer on save
+" augroup FormatSave
+"     autocmd!
+"     autocmd BufWritePost * FormatBuffer
+" augroup END
+
+autocmd StdinReadPre * let s:std_in=1
+augroup OpenExplorerWhenStart
+    autocmd!
+    " disable vim default actions when opening a directory
+    autocmd VimEnter * silent! autocmd! FileExplorer
+    autocmd VimEnter * 
+                \if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in")
+                \| exe 'CocCommand explorer '.argv()[0] | wincmd p | enew | wincmd p
+                \| exe 'cd '.argv()[0]
+                \| endif
+augroup END
+
+" auto close explorer when it's the last window in vim
+augroup QuitExplorerWhenLast
+    autocmd!
+    autocmd BufEnter \[coc-explorer\]-*
+                \ if winnr('$') == 1
+                \ | q | endif
+augroup END
+
+" Use <C-n>, <C-p>, <up> and <down> to navigate completion list: >
+inoremap <silent><expr> <C-n> coc#pum#visible() ? coc#pum#next(1) : coc#refresh()
+inoremap <silent><expr> <C-p> coc#pum#visible() ? coc#pum#prev(1) : "\<C-p>"
 
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
 " position. Coc only does snippet and additional edit on confirm.
@@ -107,42 +157,11 @@ nmap <silent> gr <Plug>(coc-references)
 nnoremap <silent> K  :call <SID>show_documentation()<CR>
 nnoremap <silent> gh :call CocActionAsync('doHover')<CR>
 
-function! s:show_documentation()
-    if (index(['vim','help'], &filetype) >= 0)
-        execute 'h '.expand('<cword>')
-    else
-        call CocActionAsync('doHover')
-    endif
-endfunction
-
-function! s:show_highlight()
-    if &ft != 'log'
-        call CocActionAsync('highlight')
-    endif
-endfunction
-
-" Highlight the symbol and its references when holding the cursor.
-augroup HoldHighlight
-    autocmd!
-    autocmd CursorHold * silent call s:show_highlight()
-augroup END
-
-" Symbol renaming
-nmap <leader>rn <Plug>(coc-rename)
-
-" set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
-
 " Formatting 
 xmap <leader>f <Plug>(coc-format-selected)
 nmap <leader>f <Plug>(coc-format-selected)
 nmap <space>f  <Plug>(coc-format)
 command! -nargs=0 FormatBuffer :silent! call CocActionAsync('format')
-
-" Format code buffer on save
-" augroup FormatSave
-"     autocmd!
-"     autocmd BufWritePost * FormatBuffer
-" augroup END
 
 " map coc action
 vmap <leader>a <Plug>(coc-codeaction-selected)
@@ -161,26 +180,6 @@ nnoremap <space>ec :CocCommand explorer --root-strategies sourceBuffer<CR>
 " `<s>eb to open current buffers tree`
 nnoremap <space>eb :CocCommand explorer --preset buffer<CR>
 " open explorer when vim opens a directory
-autocmd StdinReadPre * let s:std_in=1
-
-augroup OpenExplorerWhenStart
-    autocmd!
-    " disable vim default actions when opening a directory
-    autocmd VimEnter * silent! autocmd! FileExplorer
-    autocmd VimEnter * 
-                \if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in")
-                \| exe 'CocCommand explorer '.argv()[0] | wincmd p | enew | wincmd p
-                \| exe 'cd '.argv()[0]
-                \| endif
-augroup END
-
-" auto close explorer when it's the last window in vim
-augroup QuitExplorerWhenLast
-    autocmd!
-    autocmd BufEnter \[coc-explorer\]-*
-                \ if winnr('$') == 1
-                \ | q | endif
-augroup END
 
 " List all presets
 nnoremap <space>el :CocList explPresets"
@@ -193,11 +192,12 @@ nnoremap <space>? :<C-u>call CocActionAsync('diagnosticInfo')<CR>
 " Maps for CocList
 nnoremap <space>tt :<C-u>CocList --interactive --auto-preview symbols<CR>
 nnoremap <space>tc :<C-u>CocList outline<CR>
-nnoremap <space>p  :<C-u>CocList commands<CR>
+" nnoremap <space>p  :<C-u>CocList commands<CR>
+nnoremap <space>P :<C-u>CocList commands<CR>
 nnoremap <space>x  :<C-u>CocList extensions<CR>
 nnoremap <space>s  :<C-u>CocList grep<CR>
 nnoremap <space>r  :<C-u>CocList mru<CR>
-nnoremap <space>f  :<C-u>CocList files<CR>
+nnoremap <space>p  :<C-u>CocList files<CR>
 
 " Switch source and header use clangd
 nnoremap <space>o :<C-u>CocCommand clangd.switchSourceHeader<CR>

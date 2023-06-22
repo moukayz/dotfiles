@@ -13,6 +13,8 @@ silent! if plug#begin()
 
     " Plug 'nvim-tree/nvim-web-devicons' " optional
     " Plug 'nvim-tree/nvim-tree.lua'
+    Plug 'szw/vim-maximizer'
+    Plug 'sindrets/diffview.nvim'
 
     " lua relative
     Plug 'milisims/nvim-luaref'
@@ -115,6 +117,15 @@ endif
 
 lua << EOF
 ---require('gitlens').setup()
+require('plenary.reload').reload_module(vim.g.custom_dir)
 require('config.lualine')
 require('config.gitsigns')
+require("diffview").setup({
+  diff_binaries = false,    -- Show diffs for binaries
+  enhanced_diff_hl = true, -- See ':h diffview-config-enhanced_diff_hl'
+  git_cmd = { "git" },      -- The git executable followed by default args.
+  hg_cmd = { "hg" },        -- The hg executable followed by default args.
+  use_icons = true,         -- Requires nvim-web-devicons
+  show_help_hints = false,
+})
 EOF

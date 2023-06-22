@@ -2,9 +2,10 @@
     "colors.filetypes": [
         "*"
     ],
-    "[cpp][c]" : {
+    "[cpp][c]": {
         "inlayHint.enable": false
     },
+    "Lua.diagnostics.globals": ["vim"],
     "Lua.format.defaultConfig": {
         "indent_style": "space",
         "indent_size": "2"
@@ -41,23 +42,23 @@
     "http.proxyStrictSSL": false,
     "sh.enable": true,
     "cSpell.userWords": [
-      "Jsep",
-      "Neovim",
-      "PCONNECTIONSTATUS",
-      "RXJSON",
-      "Ufrag",
-      "Uncapitalize",
-      "Vpaas",
-      "absl",
-      "allcore",
-      "cmake",
-      "gruvbox",
-      "nvim",
-      "sdes",
-      "sonokai",
-      "srflx",
-      "srtp",
-      "test"
+        "Jsep",
+        "Neovim",
+        "PCONNECTIONSTATUS",
+        "RXJSON",
+        "Ufrag",
+        "Uncapitalize",
+        "Vpaas",
+        "absl",
+        "allcore",
+        "cmake",
+        "gruvbox",
+        "nvim",
+        "sdes",
+        "sonokai",
+        "srflx",
+        "srtp",
+        "test"
     ],
     "codeLens.enable": true,
     "diagnostic.infoSign": "",

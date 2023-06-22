@@ -41,13 +41,13 @@ local function update_filename_color(section)
     if vim.bo.modified then
         return { fg = colors.black, bg = colors.yellow }
     else
-        return { fg = colors.black, bg = colors.cyan }
+        return { fg = colors.black, bg =  colors.blue}
     end
 end
 
 require('lualine').setup {
   options = {
-    theme = bubbles_theme,
+    theme = 'everforest',
     component_separators = { left = '', right = '' },
     section_separators = { left = '', right = '' },
     globalstatus = true
@@ -57,18 +57,12 @@ require('lualine').setup {
       { 'mode', separator = { left = '' }, right_padding = 2 },
     },
     lualine_b = {
-        { 'filename', color = update_filename_color}
+      { 'filename', color = update_filename_color, separator = { right = '' } }
     },
-    lualine_c = { 'diff', { 'diagnostics',
-      symbols = { error = '', warn = '', info = '', hint = '' }
-    } },
-    lualine_x = { 'coc#status' },
-
-
-    lualine_y = { 'filetype', 'progress' },
-    lualine_z = {
-      { 'location', separator = { right = '' }, left_padding = 2 },
-    },
+    lualine_c = { 'diff', {
+      'diagnostics',
+      symbols = { error = ' ', warn = ' ', info = ' ', hint = ' ' }
+    } }
   },
   inactive_sections = {
     lualine_a = { 'filename' },
@@ -79,12 +73,53 @@ require('lualine').setup {
     lualine_z = { 'location' },
   },
   tabline = {
-    lualine_a = {{ 'tabs', mode = 2, max_length = vim.o.columns / 2}},
+    lualine_a = { { 'tabs', mode = 2, max_length = vim.o.columns / 2 } },
     lualine_b = {},
     lualine_c = {},
     lualine_x = {},
     lualine_y = {},
     lualine_z = { 'branch' },
   },
-  extensions = {},
+
+  -- options = {
+  --   theme = bubbles_theme,
+  --   component_separators = { left = '', right = '' },
+  --   section_separators = { left = '', right = '' },
+  --   globalstatus = true
+  -- },
+  -- sections = {
+  --   lualine_a = {
+  --     { 'mode', separator = { left = '' }, right_padding = 2 },
+  --   },
+  --   lualine_b = {
+  --       { 'filename', color = update_filename_color}
+  --   },
+  --   lualine_c = { 'diff', { 'diagnostics',
+  --     symbols = { error = '', warn = '', info = '', hint = '' }
+  --   } },
+  --   lualine_x = { 'coc#status' },
+  --
+  --
+  --   lualine_y = { 'filetype', 'progress' },
+  --   lualine_z = {
+  --     { 'location', separator = { right = '' }, left_padding = 2 },
+  --   },
+  -- },
+  -- inactive_sections = {
+  --   lualine_a = { 'filename' },
+  --   lualine_b = {},
+  --   lualine_c = {},
+  --   lualine_x = {},
+  --   lualine_y = {},
+  --   lualine_z = { 'location' },
+  -- },
+  -- tabline = {
+  --   lualine_a = {{ 'tabs', mode = 2, max_length = vim.o.columns / 2}},
+  --   lualine_b = {},
+  --   lualine_c = {},
+  --   lualine_x = {},
+  --   lualine_y = {},
+  --   lualine_z = { 'branch' },
+  -- },
+  -- extensions = {},
 }
