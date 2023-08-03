@@ -195,7 +195,7 @@ nnoremap <space>tc :<C-u>CocList outline<CR>
 " nnoremap <space>p  :<C-u>CocList commands<CR>
 nnoremap <space>P :<C-u>CocList commands<CR>
 nnoremap <space>x  :<C-u>CocList extensions<CR>
-nnoremap <space>s  :<C-u>CocList grep<CR>
+nnoremap <space>s  :<C-u>CocList -A --interactive --no-quit grep<CR>
 nnoremap <space>r  :<C-u>CocList mru<CR>
 nnoremap <space>p  :<C-u>CocList files<CR>
 

@@ -20,13 +20,13 @@
     whitespace-error-style = 22 reverse
 
 [delta "myconfig"]
-	; syntax-theme =
+    syntax-theme = "gruvbox-dark"
 	navigate = true
 	; side-by-side = true
-	commit-decoration-style = bold yellow box ul
+	commit-decoration-style = bold yellow  ul
 	file-style = bold yellow ul
 	file-decoration-style = none
-	hunk-header-decoration-style = yellow box ol
+	hunk-header-decoration-style = yellow  ol
 
 [delta "line-number"]
 	line-numbers = true
@@ -54,7 +54,7 @@
 [cinnabar]
 	helper = /var/folders/11/svgw_3px1m77p44r6yf36dt00000gn/T/tmpxn2p5zqk/git-cinnabar-master/git-cinnabar-helper
 [filter "lfs"]
-	process = git-lfs filter-process
-	required = true
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true

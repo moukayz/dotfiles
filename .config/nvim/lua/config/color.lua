@@ -25,7 +25,14 @@ g.everforest_enable_italic = 1
 g.everforest_diagnostic_virtual_text = 'colored'
 g.everforest_diagnostic_line_highlight = 1
 g.everforest_sign_column_background = grey
-g.everforest_enable_italic = 1
+g.everforest_dim_inactive_windows = 0
+g.everforest_ui_contrast = 'high'
+g.everforest_current_word = 'underline'
+g.everforest_background = 'hard'
+
+
+
+
 
 o.showmode = false
 o.termguicolors = true

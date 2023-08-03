@@ -1,9 +1,10 @@
 {
+    "list.floatPreview": true,
     "colors.filetypes": [
         "*"
     ],
     "[cpp][c]": {
-        "inlayHint.enable": false
+        "inlayHint.enable": true
     },
     "Lua.diagnostics.globals": ["vim"],
     "Lua.format.defaultConfig": {
@@ -11,7 +12,11 @@
         "indent_size": "2"
     },
     "Lua.format.enable": true,
-    "clangd.disableProgressNotifications": true,
+    "coc.preferences.useQuickfixForLocations": false,
+    "clangd.disableProgressNotifications": false,
+    "inlayHint.enable": true,
+    "inlayHint.enableParameter": true,
+    "inlayHint.parameterSeparator": "|",
     "clangd.arguments": [
         "--all-scopes-completion",
         "--background-index",
@@ -137,9 +142,7 @@
             ]
         }
     },
-    "semanticTokens.filetypes": [
-        "*"
-    ],
+    "semanticTokens.enable": true,
     "coc.preferences.currentFunctionSymbolAutoUpdate": true,
     "signature.floatConfig": {
         "borderhighlight": "Constant",

@@ -32,6 +32,7 @@ export FZF_CTRL_T_COMMAND="fd --type f --hidden --follow --exclude .git"
 export FZF_DEFAULT_OPTS='--color=fg:#cbccc6,bg:#1f2430,hl:#707a8c --color=fg+:#707a8c,bg+:#191e2a,hl+:#ffcc66 --color=info:#73d0ff,prompt:#707a8c,pointer:#cbccc6 --color=marker:#73d0ff,spinner:#73d0ff,header:#d4bfff'
 # setup fzf layout style
 export FZF_DEFAULT_OPTS="${FZF_DEFAULT_OPTS} --border --height 40% --reverse --prompt=\"=> \""
+[ -f "$HOME/fzf-git.sh" ] && source "$HOME/fzf-git.sh"
 
 # setup default shell editor
 if command -v nvim &> /dev/null; then

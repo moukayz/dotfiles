@@ -32,8 +32,7 @@ end
 
 function M.setup()
   gv.mapleader = '\\'
-  gv.python3_host_prog = '/usr/bin/python3'
-  gv.loaded_python_provider = 0
+  gv.python3_host_prog = '/usr/local/bin/python3'
   gv.custom_dir = 'config'
 
   -- -- disable netrw at the very start of your init.lua
@@ -43,6 +42,7 @@ function M.setup()
   opt.rtp:append('/home/linuxbrew/.linuxbrew/opt/fzf')
   opt.clipboard:append('unnamedplus')
   opt.diffopt:append {'indent-heuristic', 'linematch:60'}
+  o.swapfile = false
   o.shell = '/bin/bash'
   o.guifont = "mononoki Nerd Font Mono:h14"
   o.mouse = ""
@@ -75,8 +75,8 @@ function M.setup()
   o.exrc = true
   o.list = true
   o.listchars = 'tab:›\\ ,trail:-,space:⋅'
-  o.colorcolumn = 120
-  o.scrolloff = true
+  o.colorcolumn = '+1,+2' 
+  o.scrolloff = 3
   o.showtabline = 2
   o.pumheight = 10
   o.pumwidth = 10
@@ -111,7 +111,7 @@ function M.setup()
     nested = true,
     callback = reloadVimCallback
   })
-    vim.notify('Reload basic lua', vim.log.levels.INFO)
+  vim.notify('Reload basic lua', vim.log.levels.INFO)
 end
 
 return M

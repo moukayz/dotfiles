@@ -62,7 +62,9 @@ require('lualine').setup {
     lualine_c = { 'diff', {
       'diagnostics',
       symbols = { error = ' ', warn = ' ', info = ' ', hint = ' ' }
-    } }
+    }
+    -- , { 'coc#status' }
+  }
   },
   inactive_sections = {
     lualine_a = { 'filename' },

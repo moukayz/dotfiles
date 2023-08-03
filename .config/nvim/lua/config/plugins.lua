@@ -23,7 +23,7 @@ augroup end
 
 -- plugin configs that need setting before plugin loaded
 g.vimspector_enable_mappings = 'HUMAN'
-g.coc_default_semantic_highlight_groups = 1
+-- g.coc_default_semantic_highlight_groups = 1
 
 return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
@@ -96,13 +96,13 @@ return require('packer').startup(function(use)
   -- use 'octol/vim-cpp-enhanced-highlight'
   use 'cespare/vim-toml'
   use 'junegunn/rainbow_parentheses.vim'
-  use 'neovim/nvim-lspconfig'
+  -- use 'neovim/nvim-lspconfig'
   -- Not need anymore because coc-clangd and coc has builtin semantic highlight support
   -- use 'jackguo380/vim-lsp-cxx-highlight'
 
   -- use 'sheerun/vim-polyglot'
   -- use 'vim-syntastic/syntastic'
-  use 'plasticboy/vim-markdown'
+  -- use 'plasticboy/vim-markdown'
 
   -- use 'preservim/nerdtree'
   -- use 'Xuyuanp/nerdtree-git-plugin'
@@ -127,8 +127,12 @@ return require('packer').startup(function(use)
 
   -- languages
   use 'dag/vim-fish'
-  -- use 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install()  }, 'for': ['markdown', 'vim-plug'] }
-
+  use({
+    "iamcco/markdown-preview.nvim",
+    run = "cd app && npm install",
+    setup = function() vim.g.mkdp_filetypes = { "markdown", "vimwiki" } end,
+    ft = { "markdown", "vimwiki" },
+  })
   use 'puremourning/vimspector'
 
   -- Automatically set up your configuration after cloning packer.nvim
