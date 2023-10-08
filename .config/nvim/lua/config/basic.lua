@@ -32,7 +32,6 @@ end
 
 function M.setup()
   gv.mapleader = '\\'
-  gv.python3_host_prog = '/usr/local/bin/python3'
   gv.custom_dir = 'config'
 
   -- -- disable netrw at the very start of your init.lua

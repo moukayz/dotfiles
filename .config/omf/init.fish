@@ -20,7 +20,7 @@ alias cafish "cat $OMF_CONFIG_INIT"
 alias unset "set -e"
 
 
-test -f $CUSTOM_CONFIG_DIR/work_alias && source $CUSTOM_CONFIG_DIR/custom_alias
+test -f $CUSTOM_CONFIG_DIR/custom_alias && source $CUSTOM_CONFIG_DIR/custom_alias
 test -f $CUSTOM_CONFIG_DIR/work_alias && source $CUSTOM_CONFIG_DIR/work_alias
 
 # enable vi-mode

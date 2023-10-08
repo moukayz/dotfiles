@@ -194,5 +194,6 @@
         "default": "\uf29c"
     },
     "clangd.path": "~/clangd_16.0.2/bin/clangd",
-    "Lua.telemetry.enable": false
+    "Lua.telemetry.enable": false,
+    "snippets.ultisnips.pythonPrompt": false
 }

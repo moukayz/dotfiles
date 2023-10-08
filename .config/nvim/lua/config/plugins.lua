@@ -96,9 +96,7 @@ return require('packer').startup(function(use)
   -- use 'octol/vim-cpp-enhanced-highlight'
   use 'cespare/vim-toml'
   use 'junegunn/rainbow_parentheses.vim'
-  -- use 'neovim/nvim-lspconfig'
-  -- Not need anymore because coc-clangd and coc has builtin semantic highlight support
-  -- use 'jackguo380/vim-lsp-cxx-highlight'
+  use 'neovim/nvim-lspconfig'
 
   -- use 'sheerun/vim-polyglot'
   -- use 'vim-syntastic/syntastic'
@@ -135,6 +133,19 @@ return require('packer').startup(function(use)
   })
   use 'puremourning/vimspector'
 
+  use {
+    "folke/which-key.nvim",
+    config = function()
+      vim.o.timeout = true
+      vim.o.timeoutlen = 300
+      require("which-key").setup {
+        -- your configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
+      }
+    end
+  }
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if packer_bootstrap then
@@ -145,6 +156,8 @@ return require('packer').startup(function(use)
   require('nvim-web-devicons').setup()
   require('config.lualine')
   require('config.gitsigns')
+  require('config.treesitter')
+  require('config.lspconfig')
   require("diffview").setup({
     diff_binaries = false, -- Show diffs for binaries
     enhanced_diff_hl = true, -- See ':h diffview-config-enhanced_diff_hl'

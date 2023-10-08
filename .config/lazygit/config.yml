@@ -21,9 +21,3 @@ keybinding:
     goInto: 'l'
     scrollUpMain-alt1: '' # main panel scroll up
     scrollDownMain-alt1: '' # main panel scroll down
-customCommands:
-  - key: '<c-m>'
-    context: 'files'
-    command: 'git submodule update --init --recursive'
-    description: 'update all submodules'
-    showOutput: true
