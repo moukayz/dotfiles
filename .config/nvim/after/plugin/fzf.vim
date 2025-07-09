@@ -3,7 +3,7 @@ let g:fzf_colors = {
             \}
 let g:fzf_layout = { 'window' : { 'width' : 0.7, 'height' : 0.8 } }
 let g:fzf_tags_command = 'ctags -R --fields=Kts'
-let g:fzf_ignore_dirs = get(g:, 'fzf_ignore_dirs', ['.git', '.cache/clangd/index', 'build'])
+let g:fzf_ignore_dirs = get(g:, 'fzf_ignore_dirs', ['.git', '.cache/clangd/index', 'build', 'build_mac'])
 
 " Overwrite FZF_DEFAULT_OPTS environment variable in vim
 let $FZF_DEFAULT_OPTS="--preview-window 'up:60%'

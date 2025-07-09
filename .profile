@@ -12,8 +12,7 @@
 [ -d /usr/local/go/bin ] && PATH="$PATH:/usr/local/go/bin:$HOME/go/bin"
 
 # Rust path
-[ -d "$HOME/.cargo" ] && source "$HOME/.cargo/env"
-
+[ -d "$HOME/.cargo" ] && 
 # Load work relative env if exists
 [ -f "$HOME/.env.work" ] && source "$HOME/.env.work"
 
@@ -40,3 +39,8 @@ if command -v nvim &> /dev/null; then
 else
     export EDITOR="vim"
 fi
+
+[ -d "$HOME/flutter-dev" ] && PATH="$PATH:$HOME/flutter-dev/flutter/bin" && export PUB_HOSTED_URL="https://pub.flutter-io.cn" && export FLUTTER_STORAGE_BASE_URL="https://storage.flutter-io.cn"
+[ -f "$HOME/.mboxrc" ] && . "$HOME/.mboxrc"
+
+. "$HOME/.cargo/env"

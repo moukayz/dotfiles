@@ -157,7 +157,7 @@ return require('packer').startup(function(use)
   require('config.lualine')
   require('config.gitsigns')
   require('config.treesitter')
-  require('config.lspconfig')
+  -- require('config.lspconfig')
   require("diffview").setup({
     diff_binaries = false, -- Show diffs for binaries
     enhanced_diff_hl = true, -- See ':h diffview-config-enhanced_diff_hl'

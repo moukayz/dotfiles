@@ -58,3 +58,7 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+[lfs]
+	storage = /Users/bytedance/.idevops/git/cache/lfs
+[trace2]
+	perfTarget = /Users/bytedance/.idevops/git_logs/
